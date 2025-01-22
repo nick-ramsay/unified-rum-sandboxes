@@ -236,10 +236,10 @@ class MessageProvider extends ChangeNotifier {
   bool isLoading = false;
 
   final String baseUrl = kIsWeb
-      ? 'http://localhost:5000/messages'
+      ? 'http://localhost:3001/messages'
       : (Platform.isAndroid
-          ? 'http://10.0.2.2:5000/messages'
-          : 'http://localhost:5000/messages');
+          ? 'http://10.0.2.2:3001/messages'
+          : 'http://localhost:3001/messages');
 
   Timer? _timer;
 
