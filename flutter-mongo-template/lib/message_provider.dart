@@ -9,7 +9,7 @@ class MessageProvider with ChangeNotifier {
 
   List<String> get messages => _messages;
 
-  final String _baseUrl = kIsWeb ? 'http://localhost:5000/messages':(Platform.isAndroid ? 'http://10.0.2.2:5000/messages':'http://localhost:5000/messages');
+  final String _baseUrl = kIsWeb ? 'http://localhost:3001/messages':(Platform.isAndroid ? 'http://10.0.2.2:3001/messages':'http://localhost:3001/messages');
 
   Future<void> fetchMessages() async {
     final response = await http.get(Uri.parse('$_baseUrl/messages'));
