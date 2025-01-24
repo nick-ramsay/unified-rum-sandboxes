@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@datadog/browser-logs": "^5.35.0",
-    "@datadog/browser-rum": "^5.10.0",
+    "@datadog/browser-rum": "^5.35.0",
     "@datadog/datadog-ci": "^2.23.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -17,6 +17,8 @@
     "react-router-dom": "^6.4.3",
     "react-scripts": "^5.0.1",
     "save-dev": "^0.0.1-security",
+    "serve": "^13.0.4",
+    "web-vitals": "^4.2.4",
     "yarn": "^1.22.10"
   },
   "scripts": {

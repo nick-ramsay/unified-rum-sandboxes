@@ -1,0 +1,6 @@
+export DATADOG_API_KEY=<DATADOG_API_KEY>
+
+datadog-ci sourcemaps upload ./build/static/js \
+  --service=react-mongo-template \
+  --release-version=<CURRENT_VERSION_VALUE> \
+  --minified-path-prefix=http://localhost:3000/static/js

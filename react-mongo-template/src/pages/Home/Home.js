@@ -20,6 +20,7 @@ const Home = () => {
 
   const saveMessage = (event) => {
     let newMessage = document.getElementById("messageInput").value;
+    console.log(newMessage);
     if (newMessage !== "") {
       API.createMessage(newMessage, new Date()).then((res) => {
         renderMessages();
