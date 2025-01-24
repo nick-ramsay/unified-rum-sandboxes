@@ -31,6 +31,7 @@ datadog-ci sourcemaps upload ./build/static/js \
 
 Once uploaded, if the `service`, `version`, and `path` values match between the uploaded source maps and the stack traces you're trying to unminify, the unminification should work on your RUM Errors and Browser Logs:
 
-[Link Source Code in Datadog](https://app.datadoghq.com/source-code/setup/rum?search=&filters=%7B%7D&mapkind=js&page=1)
-[link_source_code_datadog.png](../readme_images/link_source_code_datadog.png)
-[unminified_error_example.png](../readme_images/unminified_error_example.png)
+[Link to Access Uploaded Source Maps in Datadog](https://app.datadoghq.com/source-code/setup/rum?search=&filters=%7B%7D&mapkind=js&page=1)
+
+![link_source_code_datadog.png](../readme_images/link_source_code_datadog.png)
+![unminified_error_example.png](../readme_images/unminified_error_example.png)
