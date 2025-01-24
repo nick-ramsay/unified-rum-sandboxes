@@ -26,9 +26,9 @@ datadog-ci sourcemaps upload ./build/static/js \
   --minified-path-prefix=http://localhost:3000/static/js
 ```
 
-    - You'll need to replace the `<DATADOG_API_KEY>` with your actual API key
-    - Likewise, you'll need to replace the `<CURRENT_VERSION_VALUE>` with the matching `REACT_APP_RUM_VERSION` value for `production` build on which you're current generating RUM sessions.
-    - ** Warning:** The `dd_source_map_upload_example.txt` file is not in the `.gitignore` file and changes will be monitored by Git. If you're planning on pushing these changes to a remote repo, such as GitHub, make sure not to push your API key to a public repo where it will get exposed.
+  - You'll need to replace the `<DATADOG_API_KEY>` with your actual API key
+  - Likewise, you'll need to replace the `<CURRENT_VERSION_VALUE>` with the matching `REACT_APP_RUM_VERSION` value for `production` build on which you're current generating RUM sessions.
+  - ** Warning:** The `dd_source_map_upload_example.txt` file is not in the `.gitignore` file and changes will be monitored by Git. If you're planning on pushing these changes to a remote repo, such as GitHub, make sure not to push your API key to a public repo where it will get exposed.
 
 Once uploaded, if the `service`, `version`, and `path` values match between the uploaded source maps and the stack traces you're trying to unminify, the unminification should work on your RUM Errors and Browser Logs:
 
