@@ -1,17 +1,28 @@
 import React from 'react';
 import API from "../utils/API";
-import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-export default function Card({ data, fetchMessages }) {
+// Define TypeScript interface for message data
+interface Message {
+  _id: string;
+  message: string;
+  created_date: string;
+}
 
-    console.log(data[0])
+interface CardProps {
+  data: Message[];
+  fetchMessages: () => void;
+}
 
-    const deleteMessage = (message_id) => {
-        console.log(message_id)
-        API.deleteOneMessage(message_id).then((res) => {
-            fetchMessages();
-          });
-    }
+export default function Card({ data, fetchMessages }: CardProps) {
+
+    console.log(data[0]);
+
+    const deleteMessage = (message_id: string, fetchMessages: () => void) => {
+        API.deleteOneMessage(message_id).then(() => {
+            fetchMessages(); // ✅ Now correctly calling the function
+        });
+    };
 
     const styles = StyleSheet.create({
         card: {
@@ -28,12 +39,11 @@ export default function Card({ data, fetchMessages }) {
         cardContent: {
             color: "white",
             fontStyle: "italic"
-
         },
         redButton: {
             marginTop: 5,
             paddingVertical: 4,
-            paddingHorizontal:8,
+            paddingHorizontal: 8,
             borderRadius: 4,
             backgroundColor: "#e83e8c"
         },
@@ -43,17 +53,17 @@ export default function Card({ data, fetchMessages }) {
             textAlign: 'center'
         },
     });
+
     return (
-        <View style={styles.card} key="1">
-            <Text style={styles.cardContent}>"{data[0].message}"</Text>
-            <Text style={styles.cardContent}>{data[0].created_date}</Text>
-            <TouchableOpacity style={styles.redButton}>
-                <Text style={styles.redButtonText}
-                onPress={() => deleteMessage(data[0]._id)}>Delete</Text>
+        <View style={styles.card}>
+            <Text style={styles.cardContent}>"{data[0]?.message}"</Text>
+            <Text style={styles.cardContent}>{data[0]?.created_date}</Text>
+            <TouchableOpacity 
+                style={styles.redButton}
+                onPress={() => deleteMessage(data[0]._id, fetchMessages)}
+            >
+                <Text style={styles.redButtonText}>Delete</Text>
             </TouchableOpacity>
         </View>
-
-
-    )
-
+    );
 }

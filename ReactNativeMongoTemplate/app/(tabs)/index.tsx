@@ -36,18 +36,6 @@ export default function HomeScreen() {
     }
   };
 
-  const deleteMessage = () => {
-    /*let messageDeletionID = event.currentTarget.dataset.message_id;
-    API.deleteOneMessage(messageDeletionID).then((res) => {
-      renderMessages();
-    });
-    */
-  };
-
-  const renderMessages = () => {
-
-  }
-
   useEffect(() => { fetchMessages() }, []);
 
   return (
@@ -76,7 +64,7 @@ export default function HomeScreen() {
           <Text style={styles.subtitle}>Message List</Text>
         </View>
         <View>
-          {messages.map((data, index) => (<Card key={"message_" + index} data={[data, fetchMessages]} />))}
+          {messages.map((data, index) => (<Card key={"message_" + index} data={[data, fetchMessages()]} />))}
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
