@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 import { Image, StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
+import { Link } from 'expo-router';
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import Card from "@/components/Card";
-import API from "../../utils/API";
+import API from "../utils/API";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import ReactNativeLogo from "../../assets/images/react-native-logo.png";
-import MongoLogo from "../../assets/images/mongoDbLogo.png";
+import ReactNativeLogo from "../assets/images/react-native-logo.png";
+import MongoLogo from "../assets/images/mongoDbLogo.png";
 
 export default function HomeScreen() {
   const [messages, setMessages] = React.useState([]);
@@ -40,31 +41,42 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={{ width: "100%" }}>
-        <Text style={styles.title}>React Native Mongo Template</Text>
-        <View style={styles.imageRow}>
-          <Image style={styles.image} source={ReactNativeLogo} />
-          <Image style={styles.mongoImage} source={MongoLogo} />
+      <SafeAreaView style={styles.container}>
+        <View style={styles.content}>
+          <Text style={styles.title}>React Native Mongo Template</Text>
+          <View style={styles.imageRow}>
+            <Image style={styles.image} source={ReactNativeLogo} />
+            <Image style={styles.mongoImage} source={MongoLogo} />
+          </View>
+          <View>
+            <TextInput
+              style={styles.input}
+              value={newMessage}
+              onChangeText={setNewMessage}
+              placeholder='Enter message here...'
+              placeholderTextColor="grey"
+            />
+          </View>
+          <View style={styles.standardButton}>
+            <TouchableOpacity style={styles.standardButton} onPress={() => { saveMessage() }}>
+              <Text style={styles.standardButtonText}>Submit</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <Text style={styles.subtitle}>Message List</Text>
+          </View>
+          <View>
+            {messages.map((data, index) => (<Card key={"message_" + index} data={[data, fetchMessages()]} />))}
+          </View>
         </View>
-        <View>
-          <TextInput
-            style={styles.input}
-            value={newMessage}
-            onChangeText={setNewMessage}
-            placeholder='Enter message here...'
-            placeholderTextColor="grey"
-          />
-        </View>
-        <View style={styles.standardButton}>
-          <TouchableOpacity style={styles.standardButton} onPress={() => { saveMessage()}}>
-            <Text style={styles.standardButtonText}>Submit</Text>
-          </TouchableOpacity>
-        </View>
-        <View>
-          <Text style={styles.subtitle}>Message List</Text>
-        </View>
-        <View>
-          {messages.map((data, index) => (<Card key={"message_" + index} data={[data, fetchMessages()]} />))}
+        <View style={styles.footer}>
+          <View style={styles.navButton}>
+            <TouchableOpacity style={styles.navButton}>
+              <Link href="/explore">
+                <Text style={styles.navButtonText}>Additional Functionality</Text>
+              </Link>
+            </TouchableOpacity>
+          </View>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
@@ -73,9 +85,17 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.3,
+    flex: 1,
+    backgroundColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  content: {
+    flex: 1
+  },
+  footer: {
+    width: "100%",
+    padding: 40
   },
   imageRow: {
     margin: 20,
@@ -149,6 +169,21 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center'
   },
+  navButton: {
+    marginTop: 5,
+    paddingTop: 2,
+    paddingBottom: 4,
+    borderRadius: 4,
+    backgroundColor: "red",
+    alignSelf: "center",
+    width: 150
+  },
+  navButtonText: {
+    color: 'white',
+    fontWeight: '600',
+    fontSize: 16,
+    textAlign: 'center'
+  },
   stepContainer: {
     gap: 8,
     marginBottom: 8,
@@ -159,5 +194,5 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     position: 'absolute',
-  },
+  }
 });
