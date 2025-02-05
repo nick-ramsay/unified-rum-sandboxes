@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
 import { Image, StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
+import {
+  DdSdkReactNative,
+  DdSdkReactNativeConfiguration,
+  DdLogs,
+  DdRum
+} from '@datadog/mobile-react-native';
 import { Link } from 'expo-router';
 import { HelloWave } from '@/components/HelloWave';
 import { ThemedText } from '@/components/ThemedText';
@@ -7,10 +13,11 @@ import { ThemedView } from '@/components/ThemedView';
 import Card from "@/components/Card";
 import API from "../utils/API";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import ReactNativeLogo from "../assets/images/react-native-logo.png";
-import MongoLogo from "../assets/images/mongoDbLogo.png";
+const ReactNativeLogo = require("../assets/images/react-native-logo.png");
+const MongoLogo = require("../assets/images/mongoDbLogo.png");
 
 export default function ExploreScreen() {
+  useEffect(() => {DdRum.startView("explore-view", "explore", {}, Date.now())},[])
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>

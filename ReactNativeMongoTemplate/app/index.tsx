@@ -1,4 +1,11 @@
 import React, { useEffect } from 'react';
+import {
+  DdSdkReactNative,
+  DdSdkReactNativeConfiguration,
+  DdLogs,
+  DdRum
+} from '@datadog/mobile-react-native';
+
 import { Image, StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
 import { HelloWave } from '@/components/HelloWave';
@@ -8,8 +15,8 @@ import { ThemedView } from '@/components/ThemedView';
 import Card from "@/components/Card";
 import API from "../utils/API";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import ReactNativeLogo from "../assets/images/react-native-logo.png";
-import MongoLogo from "../assets/images/mongoDbLogo.png";
+const ReactNativeLogo = require("../assets/images/react-native-logo.png");
+const MongoLogo =  require("../assets/images/mongoDbLogo.png");
 
 export default function HomeScreen() {
   const [messages, setMessages] = React.useState([]);
@@ -24,6 +31,8 @@ export default function HomeScreen() {
     //console.log(messages);
   };
 
+  setTimeout(fetchMessages, 5000)
+
   const saveMessage = () => {
 
     console.log(newMessage);
@@ -37,7 +46,7 @@ export default function HomeScreen() {
     }
   };
 
-  useEffect(() => { fetchMessages() }, []);
+  useEffect(() => { fetchMessages(), DdRum.startView("home-view", "home", {}, Date.now()) }, []);
 
   return (
     <SafeAreaProvider>
@@ -66,7 +75,7 @@ export default function HomeScreen() {
             <Text style={styles.subtitle}>Message List</Text>
           </View>
           <View>
-            {messages.map((data, index) => (<Card key={"message_" + index} data={[data, fetchMessages()]} />))}
+            {messages.map((data, index) => (<Card key={"message_" + index} data={[data]} fetchMessages={fetchMessages} />))}
           </View>
         </View>
         <View style={styles.footer}>

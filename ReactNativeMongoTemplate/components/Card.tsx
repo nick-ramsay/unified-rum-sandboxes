@@ -18,7 +18,7 @@ export default function Card({ data, fetchMessages }: CardProps) {
 
     console.log(data[0]);
 
-    const deleteMessage = (message_id: string, fetchMessages: () => void) => {
+    const deleteMessage = (message_id: string) => {
         API.deleteOneMessage(message_id).then(() => {
             fetchMessages(); // ✅ Now correctly calling the function
         });
@@ -60,7 +60,7 @@ export default function Card({ data, fetchMessages }: CardProps) {
             <Text style={styles.cardContent}>{data[0]?.created_date}</Text>
             <TouchableOpacity 
                 style={styles.redButton}
-                onPress={() => deleteMessage(data[0]._id, fetchMessages)}
+                onPress={() => deleteMessage(data[0]._id)}
             >
                 <Text style={styles.redButtonText}>Delete</Text>
             </TouchableOpacity>
