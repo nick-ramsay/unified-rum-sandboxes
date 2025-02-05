@@ -4,7 +4,8 @@ import {
   DdSdkReactNative,
   DdSdkReactNativeConfiguration,
   DdLogs,
-  DdRum
+  DdRum,
+  RumActionType
 } from '@datadog/mobile-react-native';
 import { Link } from 'expo-router';
 import { HelloWave } from '@/components/HelloWave';
@@ -17,29 +18,23 @@ const ReactNativeLogo = require("../assets/images/react-native-logo.png");
 const MongoLogo = require("../assets/images/mongoDbLogo.png");
 
 export default function ExploreScreen() {
-  useEffect(() => {DdRum.startView("explore-view", "explore", {}, Date.now())},[])
+  useEffect(() => { DdRum.startView("explore-view", "explore", {}, Date.now()) }, [])
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <View style={styles.content}>
-          <Text style={styles.title}>React Native Mongo Template - Explore</Text>
+          <Text style={styles.title}>React Native Metro Template</Text>
+          <Text style={styles.subtitle}>Additional RUM Functionality</Text>
           <View style={styles.imageRow}>
             <Image style={styles.image} source={ReactNativeLogo} />
             <Image style={styles.mongoImage} source={MongoLogo} />
           </View>
-          <View>
-            <Text style={styles.subtitle}>Additional Functionality</Text>
-          </View>
-          <View style={styles.navButton}>
-            <TouchableOpacity style={styles.navButton}>
-              <Link href="/">
-                <Text style={styles.navButtonText}>Go Back</Text>
-              </Link>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity style={styles.navButton}>
+            <Link href="/" onPress={() => DdRum.addAction(RumActionType.TAP, 'Go back button', {}, Date.now())}>
+              <Text style={styles.navButtonText}>Go Back</Text>
+            </Link>
+          </TouchableOpacity>
         </View>
-
-
       </SafeAreaView>
     </SafeAreaProvider >
   );
@@ -88,7 +83,7 @@ const styles = StyleSheet.create({
     color: "white",
     alignSelf: "center",
     fontSize: 18,
-    fontWeight: '400',
+    fontWeight: '600',
     marginTop: 20,
     marginBottom: 15
   },

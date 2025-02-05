@@ -1,41 +1,30 @@
 import React, { useEffect } from 'react';
 import {
-  DdSdkReactNative,
-  DdSdkReactNativeConfiguration,
-  DdLogs,
-  DdRum
+  DdRum,
+  RumActionType
 } from '@datadog/mobile-react-native';
 
 import { Image, StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 import Card from "@/components/Card";
 import API from "../utils/API";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 const ReactNativeLogo = require("../assets/images/react-native-logo.png");
-const MongoLogo =  require("../assets/images/mongoDbLogo.png");
+const MongoLogo = require("../assets/images/mongoDbLogo.png");
 
 export default function HomeScreen() {
   const [messages, setMessages] = React.useState([]);
   const [newMessage, setNewMessage] = React.useState('');
 
   const fetchMessages = () => {
-    console.log("Called fetchMessage")
     API.findAllMessages().then((res) => {
       setMessages((messages) => res.data);
-      //console.log(res.data);
     })
-    //console.log(messages);
   };
 
   setTimeout(fetchMessages, 5000)
 
   const saveMessage = () => {
-
-    console.log(newMessage);
     if (newMessage !== "") {
       API.createMessage(newMessage, new Date()).then((res) => {
         fetchMessages();
@@ -61,16 +50,16 @@ export default function HomeScreen() {
             <TextInput
               style={styles.input}
               value={newMessage}
+              
               onChangeText={setNewMessage}
               placeholder='Enter message here...'
               placeholderTextColor="grey"
+              onPress={() => DdRum.addAction(RumActionType.TAP, 'Message input', {}, Date.now())}
             />
           </View>
-          <View style={styles.standardButton}>
-            <TouchableOpacity style={styles.standardButton} onPress={() => { saveMessage() }}>
-              <Text style={styles.standardButtonText}>Submit</Text>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity style={styles.standardButton} onPress={() => { saveMessage(); DdRum.addAction(RumActionType.TAP, 'Submit button', {}, Date.now()); }}>
+            <Text style={styles.standardButtonText}>Submit</Text>
+          </TouchableOpacity>
           <View>
             <Text style={styles.subtitle}>Message List</Text>
           </View>
@@ -78,15 +67,11 @@ export default function HomeScreen() {
             {messages.map((data, index) => (<Card key={"message_" + index} data={[data]} fetchMessages={fetchMessages} />))}
           </View>
         </View>
-        <View style={styles.footer}>
-          <View style={styles.navButton}>
-            <TouchableOpacity style={styles.navButton}>
-              <Link href="/explore">
-                <Text style={styles.navButtonText}>Additional Functionality</Text>
-              </Link>
-            </TouchableOpacity>
-          </View>
-        </View>
+        <TouchableOpacity style={styles.navButton}>
+          <Link href="/explore" onPress={() => DdRum.addAction(RumActionType.TAP, 'Additional Functionality button', {}, Date.now())}>
+            <Text style={styles.navButtonText}>Additional Functionality</Text>
+          </Link>
+        </TouchableOpacity>
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -135,7 +120,7 @@ const styles = StyleSheet.create({
     color: "white",
     alignSelf: "center",
     fontSize: 18,
-    fontWeight: '400',
+    fontWeight: '600',
     marginTop: 20,
     marginBottom: 15
   },

@@ -1,6 +1,16 @@
+plugins {
+    id("com.datadoghq.dd-sdk-android-gradle-plugin") version "1.+"
+}
+
+datadog {
+    checkProjectDependencies = "none"
+}
+
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
+apply from: "../../node_modules/@datadog/mobile-react-native/datadog-sourcemaps.gradle"
+apply from: "../../node_modules/@datadog/mobile-react-native/datadog-sourcemaps.gradle"
 
 def projectRoot = rootDir.getAbsoluteFile().getParentFile().getAbsolutePath()
 
@@ -123,6 +133,12 @@ android {
     }
     androidResources {
         ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~'
+    }
+
+    applicationVariants.all { variant ->
+        if (project.tasks.findByName("minify${variant.name.capitalize()}WithR8")) {
+            tasks["minify${variant.name.capitalize()}WithR8"].finalizedBy { tasks["uploadMapping${variant.name.capitalize()}"] }
+        }
     }
 }
 

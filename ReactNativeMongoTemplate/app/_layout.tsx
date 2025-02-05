@@ -18,19 +18,22 @@ const rumClientToken: string = process.env.EXPO_PUBLIC_DATADOG_RUM_CLIENT_TOKEN 
 // Datadog configuration
 const datadogConfiguration = new DatadogProviderConfiguration(
   rumClientToken,
-  "staging",
+  "production",
   rumAppId,
   true, // Track user interactions
   true, // Track XHR resources
   true  // Track errors
 );
 datadogConfiguration.site = "US1";
+datadogConfiguration.version = '1.0.0'
 datadogConfiguration.nativeCrashReportEnabled = true;
 datadogConfiguration.sessionSamplingRate = 100;
 datadogConfiguration.resourceTracingSamplingRate = 100;
-datadogConfiguration.firstPartyHosts = ["example.com"];
+datadogConfiguration.firstPartyHosts = ['localhost', '10.0.2.2'];
 datadogConfiguration.serviceName = "com.example.reactnativemongotemplate";
-datadogConfiguration.verbosity = SdkVerbosity.DEBUG;
+datadogConfiguration.verbosity = SdkVerbosity.WARN;
+datadogConfiguration.nativeInteractionTracking = true;
+datadogConfiguration.nativeCrashReportEnabled = true
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();

@@ -1,6 +1,10 @@
 import React from 'react';
 import API from "../utils/API";
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+    DdRum,
+    RumActionType
+  } from '@datadog/mobile-react-native';
 
 // Define TypeScript interface for message data
 interface Message {
@@ -15,8 +19,6 @@ interface CardProps {
 }
 
 export default function Card({ data, fetchMessages }: CardProps) {
-
-    console.log(data[0]);
 
     const deleteMessage = (message_id: string) => {
         API.deleteOneMessage(message_id).then(() => {
@@ -60,7 +62,7 @@ export default function Card({ data, fetchMessages }: CardProps) {
             <Text style={styles.cardContent}>{data[0]?.created_date}</Text>
             <TouchableOpacity 
                 style={styles.redButton}
-                onPress={() => deleteMessage(data[0]._id)}
+                onPress={() => {deleteMessage(data[0]._id); DdRum.addAction(RumActionType.TAP, 'Delete message ' + data[0]._id + " button", {}, Date.now())}}
             >
                 <Text style={styles.redButtonText}>Delete</Text>
             </TouchableOpacity>
