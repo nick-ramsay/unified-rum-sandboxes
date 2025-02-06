@@ -2,6 +2,25 @@
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
+## Additional Installation/Start Instructions Notes
+
+1. If you have issues with the `npm install`, try a few of the following actions
+   a. Run `rm -rf node_modules package-lock.json` to delete `node_modules` directory and `package-lock.json` if they already exist
+   b. Then run `npm install` again
+2. To start with iOS, note the following:
+   a. Make sure you're using an iOS Simulator on version iOS 18.2 or above
+   b. Run the following command to start a development build:
+   ```
+   npx expo run:ios
+   ```
+3. To start with Android, note the following:
+   a. Make sure you have an Android simulator open, ideally with the Android version 35 or above
+   a. Run the following command to start a development build:
+   ```
+   npx expo run:android
+   ```
+4. Copy the `.env-example` file to a new file named `.env`. In the `.env` file, replace the application ID and client token values with the application ID and client token values of the RUM application you created in Datadog.
+
 ## Get started
 
 1. Install dependencies
