@@ -205,12 +205,6 @@ class AdditionalRumFunctionality extends StatelessWidget {
                   child: const Text('Go back!'),
                 ),
               ),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () => context.go('/'),
-                  child: const Text('Go back!'),
-                ),
-              ),
             ])));
   }
 }
