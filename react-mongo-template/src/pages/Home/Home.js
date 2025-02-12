@@ -133,11 +133,14 @@ const Home = () => {
     })
   }
 
+  const refreshMessages = () => {
+    setInterval(renderMessages, 5000);
+  };
+
   useEffect(() => {
-    renderMessages();
     fetchDummyJsonApi();
     applyUser();
-    datadogRum.addTiming("use_effect_called");
+    refreshMessages();
   }, []);
 
   return (

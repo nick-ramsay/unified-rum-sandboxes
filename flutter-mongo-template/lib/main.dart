@@ -33,7 +33,7 @@ void main() async {
   void startApp = runApp(
     ChangeNotifierProvider(
       create: (_) => MessageProvider(),
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
   if (Platform.isAndroid || Platform.isIOS) {
@@ -55,7 +55,7 @@ final GoRouter _router = GoRouter(routes: <RouteBase>[
       GoRoute(
         path: 'additionalRum',
         builder: (BuildContext context, GoRouterState state) {
-          return AdditionalRumFunctionality();
+          return const AdditionalRumFunctionality();
         },
       ),
     ],
@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(
-            seedColor: Color(0xffe83e8c),
+            seedColor: const Color(0xffe83e8c),
             brightness: Brightness.dark,
           )),
     );
@@ -85,6 +85,8 @@ class MyApp extends StatelessWidget {
 class MessageScreen extends StatelessWidget {
   final TextEditingController _controller = TextEditingController();
 
+  MessageScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<MessageProvider>(context);
@@ -93,7 +95,7 @@ class MessageScreen extends StatelessWidget {
         rum: DatadogSdk.instance.rum,
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          appBar: AppBar(title: Text('Flutter MongoDB Template')),
+          appBar: AppBar(title: const Text('Flutter MongoDB Template')),
           body: Column(
             children: [
               Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -135,7 +137,7 @@ class MessageScreen extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                      icon: Icon(Icons.send),
+                      icon: const Icon(Icons.send),
                       onPressed: () {
                         DateTime currentTimestamp = DateTime.now();
                         provider.addMessage(_controller.text, currentTimestamp);
@@ -147,7 +149,7 @@ class MessageScreen extends StatelessWidget {
               ),
               Expanded(
                 child: provider.isLoading
-                    ? Center(child: CircularProgressIndicator())
+                    ? const Center(child: CircularProgressIndicator())
                     : ListView.builder(
                         itemCount: provider.messages.length,
                         itemBuilder: (context, index) {
@@ -159,7 +161,7 @@ class MessageScreen extends StatelessWidget {
                                 .format(DateTime.parse(message['created_date'])
                                     .toLocal())),
                             trailing: IconButton(
-                              icon: Icon(Icons.delete),
+                              icon: const Icon(Icons.delete),
                               onPressed: () {
                                 provider.deleteMessage(message['_id']);
                               },
@@ -171,13 +173,13 @@ class MessageScreen extends StatelessWidget {
               Container(
                   margin: const EdgeInsets.only(top: 10.0, bottom: 15.0),
                   child: ElevatedButton(
-                    child: const Text('Additional RUM Functionality'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffe83e8c).withOpacity(0.5),
+                      backgroundColor: const Color(0xffe83e8c).withOpacity(0.5),
                       foregroundColor: Colors.white,
                       elevation: 5,
                     ),
                     onPressed: () => context.go("/additionalRum"),
+                    child: const Text('Additional RUM Functionality'),
                   )),
             ],
           ),
@@ -249,7 +251,7 @@ class MessageProvider extends ChangeNotifier {
   }
 
   void _startAutoFetch() {
-    _timer = Timer.periodic(Duration(seconds: 5), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       fetchMessages(loadingStatus: false);
     });
   }
