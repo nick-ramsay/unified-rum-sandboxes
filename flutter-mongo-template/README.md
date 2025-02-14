@@ -38,10 +38,10 @@ When you complete these steps, you can run the `flutter doctor` command in your 
 5. Add clientToken and applicationId values to .env file in the project root directory.
     a.  ![flutter-rum-env image](../readme_images/flutter_rum_env.png)
 6. Run the Flutter application. This can be done by simply running the flutter run command in the Flutter application’s root directory. However, it’s much easier with Flutter to run the application main.dart file of the Flutter application in the Visual Studio Code editor, as seen in the video below:
-![flutter_rum_start_app_video mp4](../readme_images/flutter_rum_start_app_video.mp4)
+![flutter_rum_start_app_video mp4](../readme_images/flutter_rum_start_app_video.gif)
  
 This Flutter application is coded to initialise Datadog RUM on iOS and Android mobile devices and will refresh the message list every five seconds. Beyond this, if you’ve used the same Mongo database that you used when setting up this [MERN Sandbox](https://datadoghq.atlassian.net/wiki/spaces/~292219379/pages/2491221450), then you will be able to test all three using the same source of data:
-![flutter_mern_rn_demo mp4](../readme_images/flutter_mern_rn_demo.mp4)
+![flutter_mern_rn_demo mp4](../readme_images/flutter_mern_rn_demo.gif)
 
 As you can see from the demonstrated activity above, you should now be able to see the activity from the Android and iOS apps under your Flutter RUM application: 
 ![flutter_rum_sessions image](../readme_images/flutter_rum_sessions.png)
