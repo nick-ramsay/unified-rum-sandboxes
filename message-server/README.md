@@ -10,7 +10,7 @@ To get started with this server, please do the following:
 
 1. Run `npm install` command to install necessary packages
 2. Create a new `.env` file by copying the content from `.env-example` into the `.env`.
-2. Create a MongoDB Atlas Database and cluster. In the process, you'll create a username and password for the cluster. **Please note down the password for the newly created user. You'll need this later and after you move on from the page you can't reveal the password again.**
+2. Create a MongoDB Atlas Database and cluster. In the process, you'll create a username and password for the cluster. **_Please note down the password for the newly created user. You'll need this later and after you move on from the page you can't reveal the password again._**
 3. Once you do this, get the connection string for the cluster. This can be done in the following steps:
     - Navigate to the cluster page, click `Connect`.
     ![MDB Connect Click Image](../readme_images/mdb_connect_click.png)
