@@ -180,11 +180,10 @@ const Home = () => {
                       }}
                       type="text"
                       placeholder="Enter your message here"
-                      className="form-control"
+                      className="form-control bg-dark text-white"
                       id="messageInput"
                       name="messageInput"
                       aria-describedby="messageHelp"
-
                     />
                   </div>
                 </div>

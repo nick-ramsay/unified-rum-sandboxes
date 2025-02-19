@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:go_router/go_router.dart';
 import 'package:datadog_flutter_plugin/datadog_flutter_plugin.dart';
 import 'package:datadog_tracking_http_client/datadog_tracking_http_client.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -202,10 +203,48 @@ class AdditionalRumFunctionality extends StatelessWidget {
               Center(
                 child: ElevatedButton(
                   onPressed: () => context.go('/'),
-                  child: const Text('Go back!'),
+                  child: const Text('Go back'),
+                ),
+              ),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Navigate to the WebView screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => LocalWebViewScreen()),
+                    );
+                  },
+                  child: const Text('React Mongo Template Webview'),
                 ),
               ),
             ])));
+  }
+}
+
+class LocalWebViewScreen extends StatefulWidget {
+  @override
+  _LocalWebViewScreenState createState() => _LocalWebViewScreenState();
+}
+
+class _LocalWebViewScreenState extends State<LocalWebViewScreen> {
+  late final WebViewController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..loadRequest(Uri.parse("http://localhost:3000/"));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("RMT WebView")),
+      body: WebViewWidget(controller: _controller),
+    );
   }
 }
 

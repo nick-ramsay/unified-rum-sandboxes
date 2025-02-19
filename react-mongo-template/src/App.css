@@ -12,9 +12,10 @@ body {
 .form-control {
   border-color: transparent;
   border-radius: 0;
+  box-shadow: 0 0 0 0.2rem rgba(232,62,140,.2);
 }
 
-.form-control:focus {
+.form-control:focus, .form-control:hover {
   border-color:  transparent;
   box-shadow: 0 0 0 0.2rem rgba(232,62,140,.8);
 }

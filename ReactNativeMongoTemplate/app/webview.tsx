@@ -7,41 +7,33 @@ import {
   DdRum,
   RumActionType
 } from '@datadog/mobile-react-native';
+import { WebView } from 'react-native-webview';
+import Constants from 'expo-constants';
 import { Link } from 'expo-router';
 import { HelloWave } from '@/components/HelloWave';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import Card from "@/components/Card";
 import API from "../utils/API";
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { hide } from 'expo-splash-screen';
 const ReactNativeLogo = require("../assets/images/react-native-logo.png");
 const MongoLogo = require("../assets/images/mongoDbLogo.png");
 
-export default function ExploreScreen() {
-  useEffect(() => { DdRum.startView("explore-view", "explore", {}, Date.now()) }, [])
+export default function RMTWebviewScreen() {
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.content}>
-          <Text style={styles.title}>React Native Metro Template</Text>
-          <Text style={styles.subtitle}>Additional RUM Functionality</Text>
-          <View style={styles.imageRow}>
-            <Image style={styles.image} source={ReactNativeLogo} />
-            <Image style={styles.mongoImage} source={MongoLogo} />
-          </View>
-          <TouchableOpacity style={styles.navButton}>
-            <Link href="/" onPress={() => DdRum.addAction(RumActionType.TAP, 'Go back button', {}, Date.now())}>
-              <Text style={styles.navButtonText}>Go Back</Text>
-            </Link>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navButton}>
-            <Link href="/webview" onPress={() => DdRum.addAction(RumActionType.TAP, 'Webview button', {}, Date.now())}>
-              <Text style={styles.standardButtonText}>React Mongo Template Webview</Text>
-            </Link>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
-    </SafeAreaProvider >
+    <SafeAreaProvider style={styles.webviewContainer}>
+      <WebView
+        source={{ uri: 'http://localhost:3000/' }}
+      />
+      <View style={styles.footerButtons}>
+        <TouchableOpacity style={styles.navButton}>
+          <Link href="/explore" onPress={() => DdRum.addAction(RumActionType.TAP, 'Go back button', {}, Date.now())}>
+            <Text style={styles.navButtonText}>Go Back</Text>
+          </Link>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaProvider>
   );
 }
 
@@ -52,12 +44,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  webviewContainer: {
+    flex: 1,
+    marginTop: Constants.statusBarHeight,
+  },
   content: {
     flex: 1
   },
   footer: {
     backgroundColor: "blue",
     padding: 40
+  },
+  footerButtons: {
+    backgroundColor: "black",
+    paddingBottom: 30,
+    paddingTop: 20
   },
   imageRow: {
     margin: 20,
@@ -126,19 +127,19 @@ const styles = StyleSheet.create({
     width: 80
   },
   standardButtonText: {
-    color: '#3b3b3b',
+    color: 'black',
     fontWeight: '600',
     fontSize: 16,
     textAlign: 'center'
   },
   navButton: {
     marginTop: 5,
-
-    padding: 10,
+    paddingTop: 2,
+    paddingBottom: 4,
     borderRadius: 4,
-    backgroundColor: "#61dafb",
+    backgroundColor: "red",
     alignSelf: "center",
-    width: 250
+    width: 80
   },
   navButtonText: {
     color: 'white',
