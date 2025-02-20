@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Image, StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Platform } from 'react-native';
 import {
   DdSdkReactNative,
   DdSdkReactNativeConfiguration,
@@ -24,7 +24,7 @@ export default function RMTWebviewScreen() {
   return (
     <SafeAreaProvider style={styles.webviewContainer}>
       <WebView
-        source={{ uri: 'http://localhost:3000/' }}
+        source={{ uri: Platform.OS === "ios" ? 'http://localhost:3000/' : 'http://10.0.2.2:3000' }}
       />
       <View style={styles.footerButtons}>
         <TouchableOpacity style={styles.navButton}>
