@@ -19,7 +19,7 @@ PODS:
     - DatadogInternal (= 2.20.0)
   - DictionaryCoder (1.0.8)
   - Flutter (1.0.0)
-  - PLCrashReporter (1.11.2)
+  - PLCrashReporter (1.11.3)
   - webview_flutter_wkwebview (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -56,7 +56,7 @@ SPEC CHECKSUMS:
   DatadogRUM: 6d88e20d36d156131ca3174040865995685974f1
   DictionaryCoder: 5f84fff69f54cb806071538430bdafe04a89d658
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  PLCrashReporter: 499c53b0104f95c302d94fd723ebb03c56d9bac8
+  PLCrashReporter: 97cef386c199b54662e744d1a62c19f7bfe08e90
   webview_flutter_wkwebview: a4af96a051138e28e29f60101d094683b9f82188
 
 PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796

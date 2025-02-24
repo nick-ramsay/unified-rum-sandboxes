@@ -236,7 +236,9 @@ class _LocalWebViewScreenState extends State<LocalWebViewScreen> {
     super.initState();
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..loadRequest(Uri.parse("http://localhost:3000/"));
+      ..loadRequest(Platform.isAndroid
+          ? Uri.parse('http://10.0.2.2:3000')
+          : Uri.parse('http://localhost:3000'));
   }
 
   @override
