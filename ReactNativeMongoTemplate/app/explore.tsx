@@ -34,11 +34,13 @@ export default function ExploreScreen() {
               <Text style={styles.navButtonText}>Go Back</Text>
             </Link>
           </TouchableOpacity>
+          {/*
           <TouchableOpacity style={styles.navButton}>
             <Link href="/webview" onPress={() => DdRum.addAction(RumActionType.TAP, 'Webview button', {}, Date.now())}>
               <Text style={styles.standardButtonText}>React Mongo Template Webview</Text>
             </Link>
           </TouchableOpacity>
+          */}
         </View>
       </SafeAreaView>
     </SafeAreaProvider >

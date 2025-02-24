@@ -68,6 +68,7 @@ export default function RootLayout() {
       >
         <Stack.Screen name="index" />
         <Stack.Screen name="explore" />
+        <Stack.Screen name="webview" />
       </Stack>
       <StatusBar style="auto" />
     </DatadogProvider>

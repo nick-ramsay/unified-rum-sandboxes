@@ -205,7 +205,8 @@ class AdditionalRumFunctionality extends StatelessWidget {
                   onPressed: () => context.go('/'),
                   child: const Text('Go back'),
                 ),
-              ),
+              )
+              /*
               Center(
                 child: ElevatedButton(
                   onPressed: () {
@@ -218,7 +219,7 @@ class AdditionalRumFunctionality extends StatelessWidget {
                   },
                   child: const Text('React Mongo Template Webview'),
                 ),
-              ),
+              ),*/
             ])));
   }
 }
@@ -237,7 +238,7 @@ class _LocalWebViewScreenState extends State<LocalWebViewScreen> {
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..loadRequest(Platform.isAndroid
-          ? Uri.parse('http://10.0.2.2:3000')
+          ? Uri.parse('https:10.0.2.2:3000')
           : Uri.parse('http://localhost:3000'));
   }
 

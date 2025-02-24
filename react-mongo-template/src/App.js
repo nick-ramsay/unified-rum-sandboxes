@@ -54,8 +54,6 @@ datadogRum.setUser({
   plan: 'premium',
 })
 
-
-
 function App() {
   const router = createBrowserRouter([
     {
