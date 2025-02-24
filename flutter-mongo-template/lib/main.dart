@@ -37,7 +37,7 @@ void main() async {
       child: const MyApp(),
     ),
   );
-  if (Platform.isAndroid || Platform.isIOS) {
+  if (Platform.isAndroid || Platform.isIOS || Platform.isMacOS) {
     await DatadogSdk.runApp(configuration, TrackingConsent.granted, () async {
       startApp;
     });
