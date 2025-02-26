@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@datadog/mobile-react-native": "^2.6.1",
+    "@datadog/mobile-react-native-session-replay": "^2.6.3",
     "@datadog/mobile-react-navigation": "^2.6.1",
     "@expo/vector-icons": "^14.0.2",
     "@react-navigation/bottom-tabs": "^7.2.0",

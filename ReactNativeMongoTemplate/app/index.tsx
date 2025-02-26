@@ -3,7 +3,7 @@ import {
   DdRum,
   RumActionType
 } from '@datadog/mobile-react-native';
-
+import { SessionReplay } from "@datadog/mobile-react-native-session-replay";
 import { Image, StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
 import Card from "@/components/Card";
@@ -35,7 +35,7 @@ export default function HomeScreen() {
     }
   };
 
-  useEffect(() => { fetchMessages(), DdRum.startView("home-view", "home", {}, Date.now()) }, []);
+  useEffect(() => { fetchMessages(), DdRum.startView("home-view", "home", {}, Date.now());  SessionReplay.enable(); }, []);
 
   return (
     <SafeAreaProvider>

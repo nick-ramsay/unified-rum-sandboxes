@@ -3,6 +3,7 @@
 # dependencies
 node_modules/
 .env
+datadog-ci.json
 
 # Expo
 .expo/
