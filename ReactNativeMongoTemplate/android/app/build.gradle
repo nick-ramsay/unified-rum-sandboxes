@@ -10,7 +10,6 @@ apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
 apply from: "../../node_modules/@datadog/mobile-react-native/datadog-sourcemaps.gradle"
-apply from: "../../node_modules/@datadog/mobile-react-native/datadog-sourcemaps.gradle"
 
 def projectRoot = rootDir.getAbsoluteFile().getParentFile().getAbsolutePath()
 
