@@ -21,6 +21,11 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    ```
 4. Copy the `.env-example` file to a new file named `.env`. In the `.env` file, replace the application ID and client token values with the application ID and client token values of the RUM application you created in Datadog.
 
+5. Set up `android/local.properties` to point to the Android SDK path, such as the following:
+```
+sdk.dir=/Users/<mac_user_name>/Library/Android/sdk
+```
+
 ## Get started
 
 1. Install dependencies
