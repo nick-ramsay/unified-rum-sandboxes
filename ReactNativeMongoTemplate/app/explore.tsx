@@ -7,7 +7,11 @@ import {
   DdRum,
   RumActionType
 } from '@datadog/mobile-react-native';
-import { SessionReplay } from "@datadog/mobile-react-native-session-replay";
+import {
+  SessionReplay,
+  SessionReplayConfiguration,
+  TextAndInputPrivacyLevel,
+} from "@datadog/mobile-react-native-session-replay";
 import { Link } from 'expo-router';
 import { HelloWave } from '@/components/HelloWave';
 import { ThemedText } from '@/components/ThemedText';
@@ -18,8 +22,13 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 const ReactNativeLogo = require("../assets/images/react-native-logo.png");
 const MongoLogo = require("../assets/images/mongoDbLogo.png");
 
+const config: SessionReplayConfiguration = {
+  replaySampleRate: 100,
+  textAndInputPrivacyLevel: TextAndInputPrivacyLevel.MASK_SENSITIVE_INPUTS,
+}
+
 export default function ExploreScreen() {
-  useEffect(() => { DdRum.startView("explore-view", "explore", {}, Date.now());  SessionReplay.enable(); }, [])
+  useEffect(() => { DdRum.startView("explore-view", "explore", {}, Date.now()); SessionReplay.enable(config); }, [])
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
@@ -136,12 +145,11 @@ const styles = StyleSheet.create({
   },
   navButton: {
     marginTop: 5,
-
-    padding: 10,
-    borderRadius: 4,
-    backgroundColor: "#61dafb",
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: "#a50050",
     alignSelf: "center",
-    width: 250
+    width: 200
   },
   navButtonText: {
     color: 'white',

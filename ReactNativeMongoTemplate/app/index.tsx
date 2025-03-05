@@ -3,8 +3,13 @@ import {
   DdRum,
   RumActionType
 } from '@datadog/mobile-react-native';
-import { SessionReplay } from "@datadog/mobile-react-native-session-replay";
-import { Image, StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import {
+  SessionReplay,
+  SessionReplayConfiguration,
+  TextAndInputPrivacyLevel,
+} from "@datadog/mobile-react-native-session-replay";
+import { Image, StyleSheet, Text, View, TextInput, Button, TouchableOpacity, ScrollView } from 'react-native';
 import { Link } from 'expo-router';
 import Card from "@/components/Card";
 import API from "../utils/API";
@@ -35,7 +40,12 @@ export default function HomeScreen() {
     }
   };
 
-  useEffect(() => { fetchMessages(), DdRum.startView("home-view", "home", {}, Date.now());  SessionReplay.enable(); }, []);
+  const config: SessionReplayConfiguration = {
+    replaySampleRate: 100,
+    textAndInputPrivacyLevel: TextAndInputPrivacyLevel.MASK_SENSITIVE_INPUTS,
+  }
+
+  useEffect(() => { fetchMessages(), DdRum.startView("home-view", "home", {}, Date.now()); SessionReplay.enable(config); }, []);
 
   return (
     <SafeAreaProvider>
@@ -46,26 +56,22 @@ export default function HomeScreen() {
             <Image style={styles.image} source={ReactNativeLogo} />
             <Image style={styles.mongoImage} source={MongoLogo} />
           </View>
-          <View>
+          <View style={styles.messageInputSection}>
             <TextInput
               style={styles.input}
               value={newMessage}
-              
               onChangeText={setNewMessage}
               placeholder='Enter message here...'
               placeholderTextColor="grey"
               onPress={() => DdRum.addAction(RumActionType.TAP, 'Message input', {}, Date.now())}
             />
+            <TouchableOpacity onPress={() => { saveMessage(); DdRum.addAction(RumActionType.TAP, 'Submit button', {}, Date.now()); }}>
+              <Text><Ionicons name="send" size={24} color="grey" /></Text>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.standardButton} onPress={() => { saveMessage(); DdRum.addAction(RumActionType.TAP, 'Submit button', {}, Date.now()); }}>
-            <Text style={styles.standardButtonText}>Submit</Text>
-          </TouchableOpacity>
-          <View>
-            <Text style={styles.subtitle}>Message List</Text>
-          </View>
-          <View>
+          <ScrollView >
             {messages.map((data, index) => (<Card key={"message_" + index} data={[data]} fetchMessages={fetchMessages} />))}
-          </View>
+          </ScrollView>
         </View>
         <TouchableOpacity style={styles.navButton}>
           <Link href="/explore" onPress={() => DdRum.addAction(RumActionType.TAP, 'Additional Functionality button', {}, Date.now())}>
@@ -80,7 +86,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1e1f20',
+    backgroundColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -133,7 +139,7 @@ const styles = StyleSheet.create({
     height: 40,
     margin: 12,
     borderWidth: 1,
-    width: '90%',
+    flex: 1,
     padding: 10,
     borderColor: "#e83e8c",
     borderRadius: 4,
@@ -145,15 +151,15 @@ const styles = StyleSheet.create({
     color: "white",
     alignSelf: "center"
   },
-  card: {
-    color: "white"
+  messageInputSection: {
+    flexDirection: "row",
+    alignItems: "center"
   },
   standardButton: {
     marginTop: 5,
     paddingTop: 2,
     paddingBottom: 4,
     borderRadius: 4,
-    backgroundColor: "#61dafb",
     alignSelf: "center",
     width: 80
   },
@@ -165,12 +171,11 @@ const styles = StyleSheet.create({
   },
   navButton: {
     marginTop: 5,
-    paddingTop: 2,
-    paddingBottom: 4,
-    borderRadius: 4,
-    backgroundColor: "red",
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: "#a50050",
     alignSelf: "center",
-    width: 150
+    width: 200
   },
   navButtonText: {
     color: 'white',

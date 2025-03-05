@@ -4,7 +4,6 @@ import { StatusBar } from "expo-status-bar";
 import { useNavigationContainerRef } from "@react-navigation/native";
 import { DatadogProvider, DatadogProviderConfiguration, SdkVerbosity } from "@datadog/mobile-react-native";
 import { DdRumReactNavigationTracking } from "@datadog/mobile-react-navigation";
-import { SessionReplay } from "@datadog/mobile-react-native-session-replay";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
 import { useColorScheme } from "@/hooks/useColorScheme";
