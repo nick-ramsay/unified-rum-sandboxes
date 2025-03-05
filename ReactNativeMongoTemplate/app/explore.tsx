@@ -33,7 +33,7 @@ export default function ExploreScreen() {
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <View style={styles.content}>
-          <Text style={styles.title}>React Native Metro Template</Text>
+          <Text style={styles.title}>React Native Mongo Template</Text>
           <Text style={styles.subtitle}>Additional RUM Functionality</Text>
           <View style={styles.imageRow}>
             <Image style={styles.image} source={ReactNativeLogo} />
