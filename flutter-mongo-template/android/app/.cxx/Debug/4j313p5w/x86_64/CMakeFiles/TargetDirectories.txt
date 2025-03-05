@@ -1,0 +1,2 @@
+/Users/nick.ramsay/NRRepos/unified-rum-sandboxes/flutter-mongo-template/android/app/.cxx/Debug/4j313p5w/x86_64/CMakeFiles/edit_cache.dir
+/Users/nick.ramsay/NRRepos/unified-rum-sandboxes/flutter-mongo-template/android/app/.cxx/Debug/4j313p5w/x86_64/CMakeFiles/rebuild_cache.dir
