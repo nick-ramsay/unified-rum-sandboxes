@@ -3,6 +3,11 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useNavigationContainerRef } from "@react-navigation/native";
 import { DatadogProvider, DatadogProviderConfiguration, SdkVerbosity } from "@datadog/mobile-react-native";
+import {
+  SessionReplay,
+  SessionReplayConfiguration,
+  TextAndInputPrivacyLevel,
+} from "@datadog/mobile-react-native-session-replay";
 import { DdRumReactNavigationTracking } from "@datadog/mobile-react-navigation";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
@@ -43,17 +48,20 @@ export default function RootLayout() {
 
   const navigationRef = useNavigationContainerRef();
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+  const config: SessionReplayConfiguration = {
+    replaySampleRate: 100,
+    textAndInputPrivacyLevel: TextAndInputPrivacyLevel.MASK_SENSITIVE_INPUTS,
+  }
 
   useEffect(() => {
     if (navigationRef.current) {
       DdRumReactNavigationTracking.startTrackingViews(navigationRef);
     }
-  }, [navigationRef]);
+    SessionReplay.enable(config);
+    if (loaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [navigationRef, loaded]);
 
   if (!loaded) {
     return null;

@@ -7,11 +7,6 @@ import {
   DdRum,
   RumActionType
 } from '@datadog/mobile-react-native';
-import {
-  SessionReplay,
-  SessionReplayConfiguration,
-  TextAndInputPrivacyLevel,
-} from "@datadog/mobile-react-native-session-replay";
 import { Link } from 'expo-router';
 import { HelloWave } from '@/components/HelloWave';
 import { ThemedText } from '@/components/ThemedText';
@@ -22,13 +17,8 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 const ReactNativeLogo = require("../assets/images/react-native-logo.png");
 const MongoLogo = require("../assets/images/mongoDbLogo.png");
 
-const config: SessionReplayConfiguration = {
-  replaySampleRate: 100,
-  textAndInputPrivacyLevel: TextAndInputPrivacyLevel.MASK_SENSITIVE_INPUTS,
-}
-
 export default function ExploreScreen() {
-  useEffect(() => { DdRum.startView("explore-view", "explore", {}, Date.now()); SessionReplay.enable(config); }, [])
+  useEffect(() => { DdRum.startView("explore-view", "explore", {}, Date.now()); }, [])
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>

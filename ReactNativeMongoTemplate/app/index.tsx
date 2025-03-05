@@ -4,11 +4,6 @@ import {
   RumActionType
 } from '@datadog/mobile-react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import {
-  SessionReplay,
-  SessionReplayConfiguration,
-  TextAndInputPrivacyLevel,
-} from "@datadog/mobile-react-native-session-replay";
 import { Image, StyleSheet, Text, View, TextInput, Button, TouchableOpacity, ScrollView } from 'react-native';
 import { Link } from 'expo-router';
 import Card from "@/components/Card";
@@ -40,12 +35,7 @@ export default function HomeScreen() {
     }
   };
 
-  const config: SessionReplayConfiguration = {
-    replaySampleRate: 100,
-    textAndInputPrivacyLevel: TextAndInputPrivacyLevel.MASK_SENSITIVE_INPUTS,
-  }
-
-  useEffect(() => { fetchMessages(), DdRum.startView("home-view", "home", {}, Date.now()); SessionReplay.enable(config); }, []);
+  useEffect(() => { fetchMessages(), DdRum.startView("home-view", "home", {}, Date.now()); }, []);
 
   return (
     <SafeAreaProvider>
