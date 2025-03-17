@@ -86,7 +86,7 @@ export default function Card({ data, fetchMessages }: CardProps) {
         let currentYear = timestamp.getFullYear();
 
         let currentHour = timestamp.getHours() <= 12 ? timestamp.getHours():(timestamp.getHours() % 12);
-        let currentMinute = timestamp.getMinutes();
+        let currentMinute = timestamp.getMinutes() < 10 ? "0" + timestamp.getMinutes():timestamp.getMinutes();
         let amPm = timestamp.getHours() > 12 ? "PM":"AM"
 
         let reformattedTimestamp = currentday + " " + currentMonth + " " + currentYear + ", " + currentHour + ":" + currentMinute + " " + amPm;
