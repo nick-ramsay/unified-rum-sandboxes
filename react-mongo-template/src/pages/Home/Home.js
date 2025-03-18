@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import HashLoader from "react-spinners/HashLoader";
 import { datadogRum } from "@datadog/browser-rum";
 import { datadogLogs } from "@datadog/browser-logs";
 import { } from "../../sharedFunctions/sharedFunctions";
@@ -11,10 +12,12 @@ import "./style.css";
 
 const Home = () => {
   var [messages, setMessages] = useState([]);
+  var [loading, setLoading] = useState(true);
 
   const renderMessages = () => {
     API.findAllMessages().then((res) => {
       setMessages((messages) => res.data);
+      setLoading(loading => false);
     });
   };
 
@@ -141,7 +144,7 @@ const Home = () => {
     fetchDummyJsonApi();
     applyUser();
     refreshMessages();
-  }, []);
+  }, [refreshMessages]);
 
   return (
     <div>
@@ -203,37 +206,45 @@ const Home = () => {
               </form>
             </div>
           </div>
-          <div className="row">
-            <p style={{ color: "#e83e8c" }} className="mt-3 mb-1">
-              {messages.length === 0
-                ? "No Messages"
-                : messages.length +
-                (messages.length > 1 ? " messages" : " message")}
-            </p>
-          </div>
-          <div className="row">
-            <div className="col-md-12">
-              {messages.map((message, i) => (
-                <div className="mt-2 mb-2 message-card" key={i}>
-                  <div className="pt-1">
-                    <div style={{ fontStyle: "italic" }} className="mt-1 mb-1">
-                      "{message.message}"
+          {loading === true ?
+            <div className="row mt-5 mb-5">
+              <div className="col-md-12">
+                <HashLoader className="my-auto mx-auto" color="#d63384" size="150" />
+              </div>
+            </div> :
+            <div>
+              <div className="row">
+                <p style={{ color: "#e83e8c" }} className="mt-3 mb-1">
+                  {messages.length === 0
+                    ? "No Messages"
+                    : messages.length +
+                    (messages.length > 1 ? " messages" : " message")}
+                </p>
+              </div>
+              <div className="row">
+                <div className="col-md-12">
+                  {messages.map((message, i) => (
+                    <div className="mt-2 mb-2 message-card" key={i}>
+                      <div className="pt-1">
+                        <div style={{ fontStyle: "italic" }} className="mt-1 mb-1">
+                          "{message.message}"
+                        </div>
+                        <div style={{ color: "#61dafb" }} className="mb-2">
+                          {moment(message.created_date).format("DD MMMM YYYY h:mm A")}
+                        </div>
+                        <div
+                          className="btn btn-sm btn-custom-red mb-1 mt-1"
+                          data-message_id={message._id}
+                          onClick={deleteMessage}
+                        >
+                          Delete
+                        </div>
+                      </div>
                     </div>
-                    <div style={{ color: "#61dafb" }} className="mb-2">
-                      {moment(message.created_date).format("DD MMMM YYYY h:mm A")}
-                    </div>
-                    <div
-                      className="btn btn-sm btn-custom-red mb-1 mt-1"
-                      data-message_id={message._id}
-                      onClick={deleteMessage}
-                    >
-                      Delete
-                    </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
+            
           <hr></hr>
           <div className="row">
             <div className="col-md-12">
@@ -302,9 +313,10 @@ const Home = () => {
               </div>
             </div>
           </div>
+          </div>}
           <div className="col-md-12 pt-3 pb-3">
             <a
-              href="https://github.com/nick-ramsay/react-mongo-template-docker"
+              href="https://github.com/nick-ramsay/unified-rum-sandboxes/tree/main/react-mongo-template"
               target="_blank"
               rel="noopener noreferrer"
               title="Check out this repo on GitHub!"
