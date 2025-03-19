@@ -96,12 +96,6 @@ const Home = () => {
     );
   }
 
-  const fetchDummyJson = () => {
-    fetch('https://dummyjson.com/products/1')
-      .then(res => res.json())
-      .then(json => console.log(json))
-  }
-
   const applyGlobalContextAttribute = () => {
     let item_1 = String(Math.round(Math.random() * 100000));
     let item_2 = String(Math.round(Math.random() * 100000));
@@ -129,19 +123,11 @@ const Home = () => {
   //END: Datadog RUM Functions
   ///////////////////////////////////////////
 
-  const fetchDummyJsonApi = () => {
-    fetch("https://dummyjson.com/c/eb3d-d728-4cdf-ab19", {
-      method: "post",
-      body: JSON.stringify({ username: "example" })
-    })
-  }
-
   const refreshMessages = () => {
     setInterval(renderMessages, 5000);
   };
 
   useEffect(() => {
-    fetchDummyJsonApi();
     applyUser();
     refreshMessages();
   }, [refreshMessages]);
@@ -244,76 +230,81 @@ const Home = () => {
                   ))}
                 </div>
               </div>
-            
-          <hr></hr>
-          <div className="row">
-            <div className="col-md-12">
-              <div class="accordion accordion-flush" data-bs-theme="dark" id="accordionAdditionalRumFunctions">
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#additional-rum-functions" aria-expanded="false" aria-controls="flush-collapseOne">
-                      Additional RUM Functionality
-                    </button>
-                  </h2>
-                  <div id="additional-rum-functions" class="accordion-collapse collapse" data-bs-parent="#accordionAdditionalRumFunctions">
-                    <div class="accordion-body">
-                      <div className="row">
-                        <div className="col-md-6">
-                          <button
-                            className="btn btn-sm btn-outline-danger"
-                            onClick={() => triggerRuntimeError()}
-                          >
-                            Trigger Runtime Error
-                          </button>
-                        </div>
-                        <div className="col-md-6">
-                          <button
-                            className="btn btn-sm btn-outline-danger"
-                            onClick={() => generateManualRumError()}
-                          >
-                            Generate Manual RUM Error Event
-                          </button>
-                        </div>
-                      </div>
-                      <div className="row mt-2">
-                        <div className="col-md-6">
-                          <button
-                            className="btn btn-sm btn-outline-warning"
-                            onClick={() => generateBrowserLogs()}
-                          >
-                            Generate Browser Logs
-                          </button>
-                        </div>
-                        <div className="col-md-6">
-                          <button className="btn btn-sm btn-outline-secondary" onClick={() => fetchDummyJson()}>
-                            Call DummyJSON
-                          </button>
-                        </div>
-                      </div>
-                      <div className="row mt-2">
-                        <div className="col-md-6">
-                          <button className="btn btn-sm btn-outline-primary" onClick={() => applyGlobalContextAttribute()}>
-                            Apply Global Context
-                          </button>
-                        </div>
-                        <div className="col-md-6">
-                          <button className="btn btn-sm btn-outline-light" onClick={() => window.location.href = "./alternate"}>Go to Alternative View</button>
-                        </div>
-                      </div>
-                      <div className="row mt-2">
-                        <div className="col-md-6">
-                          <button className="btn btn-sm btn-outline-success" onClick={() => applyUserProperties()}>
-                            Set User Property
-                          </button>
+
+              <hr></hr>
+              <div className="row">
+                <div className="col-md-12">
+                  <div class="accordion accordion-flush" data-bs-theme="dark" id="accordionAdditionalRumFunctions">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#additional-rum-functions" aria-expanded="false" aria-controls="flush-collapseOne">
+                          Additional RUM Functionality
+                        </button>
+                      </h2>
+                      <div id="additional-rum-functions" class="accordion-collapse collapse" data-bs-parent="#accordionAdditionalRumFunctions">
+                        <div class="accordion-body">
+                          <div className="row">
+                            <div className="col-md-6">
+                              <button
+                                className="btn btn-sm btn-outline-danger"
+                                onClick={() => triggerRuntimeError()}
+                              >
+                                Trigger Runtime Error
+                              </button>
+                            </div>
+                            <div className="col-md-6">
+                              <button
+                                className="btn btn-sm btn-outline-danger"
+                                onClick={() => generateManualRumError()}
+                              >
+                                Generate Manual RUM Error Event
+                              </button>
+                            </div>
+                          </div>
+                          <div className="row mt-2">
+                            <div className="col-md-6">
+                              <button
+                                className="btn btn-sm btn-outline-warning"
+                                onClick={() => generateBrowserLogs()}
+                              >
+                                Generate Browser Logs
+                              </button>
+                            </div>
+                            <div className="col-md-6">
+                              <button className="btn btn-sm btn-outline-secondary"
+                                data-dd-action-name="Clicked Custom Action Button"
+                                onClick={() => {
+                                  console.log("Clicked custom action button!");
+                                }}
+                              >
+                                Custom Action Name
+                              </button>
+                            </div>
+                          </div>
+                          <div className="row mt-2">
+                            <div className="col-md-6">
+                              <button className="btn btn-sm btn-outline-primary" onClick={() => applyGlobalContextAttribute()}>
+                                Apply Global Context
+                              </button>
+                            </div>
+                            <div className="col-md-6">
+                              <button className="btn btn-sm btn-outline-light" onClick={() => window.location.href = "./alternate"}>Go to Alternative View</button>
+                            </div>
+                          </div>
+                          <div className="row mt-2">
+                            <div className="col-md-6">
+                              <button className="btn btn-sm btn-outline-success" onClick={() => applyUserProperties()}>
+                                Set User Property
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          </div>}
+            </div>}
           <div className="col-md-12 pt-3 pb-3">
             <a
               href="https://github.com/nick-ramsay/unified-rum-sandboxes/tree/main/react-mongo-template"
