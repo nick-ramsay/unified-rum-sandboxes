@@ -10,7 +10,7 @@ PODS:
     - DatadogInternal (= 2.22.1)
   - DatadogRUM (2.22.1):
     - DatadogInternal (= 2.22.1)
-  - DatadogSDKReactNative (2.6.1):
+  - DatadogSDKReactNative (2.6.3):
     - DatadogCore (~> 2.22.0)
     - DatadogCrashReporting (~> 2.22.0)
     - DatadogLogs (~> 2.22.0)
@@ -68,27 +68,27 @@ PODS:
   - DatadogWebViewTracking (2.22.1):
     - DatadogInternal (= 2.22.1)
   - DoubleConversion (1.1.6)
-  - EXConstants (17.0.5):
+  - EXConstants (17.0.8):
     - ExpoModulesCore
-  - Expo (52.0.30):
+  - Expo (52.0.40):
     - ExpoModulesCore
-  - ExpoAsset (11.0.3):
+  - ExpoAsset (11.0.5):
     - ExpoModulesCore
   - ExpoBlur (14.0.3):
     - ExpoModulesCore
-  - ExpoFileSystem (18.0.9):
+  - ExpoFileSystem (18.0.12):
     - ExpoModulesCore
-  - ExpoFont (13.0.3):
+  - ExpoFont (13.0.4):
     - ExpoModulesCore
   - ExpoHaptics (14.0.1):
     - ExpoModulesCore
-  - ExpoHead (4.0.17):
+  - ExpoHead (4.0.19):
     - ExpoModulesCore
-  - ExpoKeepAwake (14.0.2):
+  - ExpoKeepAwake (14.0.3):
     - ExpoModulesCore
   - ExpoLinking (7.0.5):
     - ExpoModulesCore
-  - ExpoModulesCore (2.2.0):
+  - ExpoModulesCore (2.2.3):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -111,11 +111,11 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - ExpoSplashScreen (0.29.21):
+  - ExpoSplashScreen (0.29.22):
     - ExpoModulesCore
   - ExpoSymbols (0.2.2):
     - ExpoModulesCore
-  - ExpoSystemUI (4.0.7):
+  - ExpoSystemUI (4.0.8):
     - ExpoModulesCore
   - ExpoWebBrowser (14.0.2):
     - ExpoModulesCore
@@ -2155,26 +2155,26 @@ SPEC CHECKSUMS:
   DatadogInternal: a8c76be038445b4f96b5080891784ad5f17b37d2
   DatadogLogs: 3d1be9c7a049c00c740d2488a1b89f0d6977b689
   DatadogRUM: a9bd417aadfe4fff9829f6f0083465c7f829e0aa
-  DatadogSDKReactNative: 5b1047d12bcb2ad8bced39e9950ec9fb55d84760
+  DatadogSDKReactNative: c41c9d23c8ffac239998237eb630101db34e07fb
   DatadogSDKReactNativeSessionReplay: 2c7e084b8e45b7631f89f836d902475c263a34a0
   DatadogSessionReplay: 66bd83742d3f7ff2de72152e8576462e8db0d5ce
   DatadogTrace: ea16b3b5ffb193f27e7740836bc703c10cbec40a
   DatadogWebViewTracking: e6a738f963df959526000cb76b232df3852c958b
   DoubleConversion: f16ae600a246532c4020132d54af21d0ddb2a385
-  EXConstants: aa93a3e70f8b37c81a80931cfd23f860b1819167
-  Expo: ff20e7bf6603d213f5bcb4076adadad772468a0e
-  ExpoAsset: 77e4579f19b48d6b3f4055c933e86ce45e80caeb
+  EXConstants: a1f35b9aabbb3c6791f8e67722579b1ffcdd3f18
+  Expo: 2f39ef76a9b526e4d27e09903cac67ac083790ba
+  ExpoAsset: 0687fe05f5d051c4a34dd1f9440bd00858413cfe
   ExpoBlur: 567af66164e3043a9a30069594aed1ddf0a88d97
-  ExpoFileSystem: 208cf862e5d0f4afcc37dc3958d54c7f0b5b7fc1
-  ExpoFont: 8b14db1afebf62e9774613a082e402985f4e747c
+  ExpoFileSystem: c8c19bf80d914c83dda3beb8569d7fb603be0970
+  ExpoFont: 773955186469acc5108ff569712a2d243857475f
   ExpoHaptics: e01cce0741d68c281853118eb0267f88d42c6b7a
-  ExpoHead: 3d555eb5d0d68c478b9ea259337686c58de22c71
-  ExpoKeepAwake: 1f74cdf53ab3b3aeb7110f18eb053c92e7c3e710
+  ExpoHead: 266288a26bf2d6bc04909b5180d7478d2237f8ab
+  ExpoKeepAwake: 2a5f15dd4964cba8002c9a36676319a3394c85c7
   ExpoLinking: 0381341519ca7180a3a057d20edb1cf6a908aaf4
-  ExpoModulesCore: 15ef3b23253d4aab95fd9bb80adeb8fa35d611eb
-  ExpoSplashScreen: 2625fffb137856c82c32d6f25e7ee97249bdc0ee
+  ExpoModulesCore: 0bcea8c26791a8f0aed1d4a961f1165e1fc657d4
+  ExpoSplashScreen: 643666b96a84e8d97d55fac43926fb4183c692d9
   ExpoSymbols: b9f255ce49868d46a73f30e12859efeb8117bcad
-  ExpoSystemUI: 7296f92af7c30ec0fc4305bbeb5c396d7fc9e86c
+  ExpoSystemUI: ba4507df7d8d15f5e1694a3c7fc6bc3cca3803e5
   ExpoWebBrowser: 6890a769e6c9d83da938dceb9a03e764afc3ec9c
   FBLazyVector: be509404b5de73a64a74284edcaf73a5d1e128b1
   fmt: 10c6e61f4be25dc963c36bd73fc7b1705fe975be

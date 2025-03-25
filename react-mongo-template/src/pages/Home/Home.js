@@ -15,6 +15,7 @@ const Home = () => {
   var [loading, setLoading] = useState(true);
 
   const renderMessages = () => {
+    console.log("Called Render Messages");
     API.findAllMessages().then((res) => {
       setMessages((messages) => res.data);
       setLoading(loading => false);
@@ -123,14 +124,14 @@ const Home = () => {
   //END: Datadog RUM Functions
   ///////////////////////////////////////////
 
-  const refreshMessages = () => {
-    setInterval(renderMessages, 5000);
-  };
-
   useEffect(() => {
     applyUser();
-    refreshMessages();
-  }, [refreshMessages]);
+    const intervalId = setInterval(() => {
+      renderMessages();
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <div>
