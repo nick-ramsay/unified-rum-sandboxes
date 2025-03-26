@@ -8,7 +8,7 @@ The purpose of this repository is to consolidate all prior sandboxes I created i
 
 Each frontend application is monitored with it’s respective RUM SDK and has RUM-Trace correlation enabled. All applications consist of a main view where messages are created, read, and deleted from the shared MongoDB database. There is also an additional page, allowing a second view to get created, where additional RUM functionality is added to test, learn, and demonstrate Datadog RUM:
 
-![Unified Sandbox Applications All_Apps_Side_by_Side_Image](./readme_images/Unified_Sandbox_Applications_All_Apps_Side_by_Side_Image.jpg)
+![Unified Sandbox Applications All_Apps_Side_by_Side_Image](./readme_images/Unified_Sandbox_Applications_All_Apps_Side_by_Side_Image.png)
 
 If you're a Datadog employee you can find [documentation on this repository here](https://datadoghq.atlassian.net/wiki/spaces/TS/pages/4899275057/Educational+Unified+RUM+Sandboxes).
 
