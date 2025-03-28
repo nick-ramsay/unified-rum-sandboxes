@@ -1,74 +1,56 @@
-# Welcome to your Expo app 👋
+# ReactNativeMongoTemplate
+## Quick Overview [TLDR]
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This guide provides instructions on how to set up a React Native application monitored by the Datadog React Native RUM SDK. This guide will include the following:
+- Setup an Express server to connect your React Native app to a Mongo database
+- Setup your React Native app and monitor with Datadog RUM
+- Explanations of how the React Native application works with RUM and the Express server
 
-## Additional Installation/Start Instructions Notes
+## Prerequisites
 
-1. If you have issues with the `npm install`, try a few of the following actions
-   a. Run `rm -rf node_modules package-lock.json` to delete `node_modules` directory and `package-lock.json` if they already exist
-   b. Then run `npm install` again
-2. To start with iOS, note the following:
-   a. Make sure you're using an iOS Simulator on version iOS 18.2 or above
-   b. Run the following command to start a development build:
-   ```
-   npx expo run:ios
-   ```
-3. To start with Android, note the following:
-   a. Make sure you have an Android simulator open, ideally with the Android version 35 or above
-   a. Run the following command to start a development build:
-   ```
-   npx expo run:android
-   ```
-4. Copy the `.env-example` file to a new file named `.env`. In the `.env` file, replace the application ID and client token values with the application ID and client token values of the RUM application you created in Datadog.
+This sandbox will depend upon two separate applications, a backend server and a front-end React Native application. The prerequisites for these are the following:
 
-5. Set up `android/local.properties` to point to the Android SDK path, such as the following:
-```
-sdk.dir=/Users/<mac_user_name>/Library/Android/sdk
-```
+### General
+- Create a [GitHub](https://github.com/) account
+- Install [Git](https://git-scm.com/) on your laptop
+- Install a code editor on your laptop such as [Visual Studio](https://code.visualstudio.com/) or [Sublime](https://www.sublimetext.com/)
 
-## Get started
+### React Native App
 
-1. Install dependencies
+React Native is based, at it’s foundations, on a superset of JavaScript known as [TypeScript](https://www.typescriptlang.org/). This means that if you work with JavaScript and have the required prerequisites installed, then you likely have most of what you need to get started.
 
-   ```bash
-   npm install
-   ```
+With that said, you must have Node.js installed locally on your laptop. The best way to do this is via Node Version Manager (`nvm`) : [GitHub - nvm-sh/nvm: Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating). Alternatively, you could also install Node.js and npm separately:
+   1. Install Node: [Node.js — Download Node.js®](https://nodejs.org/en/download)
+   2. Install Node Package Manager (`npm`): [Downloading and installing Node.js and npm | npm Docs](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-2. Start the app
+However, in addition to JavaScript you’ll need a few more dependencies installed:
+   1. [Xcode](https://developer.apple.com/xcode/) and [Android Studio](https://developer.android.com/studio) installed
+   2. Installing [Cocoapods](https://guides.cocoapods.org/using/getting-started.html) for iOS development
 
-   ```bash
-    npx expo start
-   ```
+When you complete these steps, you can run the `npx react-native doctor` command in your terminal for confirmation that you’ve installed all prerequisites:
+![react_native_rn_doctor_output_image](../readme_images/react_native_rn_doctor_output.png)
 
-In the output, you'll find options to open the app in a
+## Setting Up and Starting React Native App
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+1. In the `unified-rum-sandboxes` repository, move to the `ReactNativeMongoTemplate` directory
+2. Run the following command to install the necessary dependencies: `npm install`
+3. Create a React Native RUM application in your Datadog org
+   1. ![react_native_create_rum_app_image_1](../readme_images/react_native_create_rum_app_image_1.png)
+   2. ![react_native_create_rum_app_image1](../readme_images/react_native_create_rum_app_image_2.png)
+4. Copy the contents of the `.env-example` file to a new file named `.env`
+   1. ![react_native_env_example](../readme_images/react_native_env_example.png)
+5. Add `clientToken` and `applicationId` values to `.env` file in the project root directory.
+   1. ![react_native_env](../readme_images/react_native_env.png)
+6. Run the React Native application. This can be done by simply running one of the following two commands depending upon the OS you want to use:
+   1. iOS: `npx expo run:ios`
+   2. Android: `npx expo run:android`
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+This React Native application is coded to initialise Datadog RUM on iOS and Android mobile devices and will refresh the message list every five seconds. Beyond this, if you’ve used the same Mongo database that you used when setting up this [MERN Sandbox](https://github.com/nick-ramsay/unified-rum-sandboxes/main/react-mongo-template), then you will be able to test all three using the same source of data:
+![react_native_all_apps_side_by_side](../readme_images/react_native_all_apps_side_by_side.png)
 
-## Get a fresh project
+As you can see from the demonstrated activity above, you should now be able to see the activity from the Android and iOS apps under your React Native RUM application:
+![react_native_rum_data_in_datadog_1](../readme_images/react_native_rum_data_in_datadog_1.png)
+![react_native_rum_data_in_datadog_2](../readme_images/react_native_rum_data_in_datadog_2.png)
+![react_native_rum_data_in_datadog_3](../readme_images/react_native_rum_data_in_datadog_3.png)
 
-When you're ready, run:
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
