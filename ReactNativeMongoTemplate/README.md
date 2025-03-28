@@ -32,7 +32,7 @@ When you complete these steps, you can run the `npx react-native doctor` command
 
 ## Setting Up and Starting React Native App
 
-Prior to starting the React Native app, make sure to start up the `message-server` by following the instructions [at this link](https://github.com/nick-ramsay/unified-rum-sandboxes/tree/main/message-server)
+Prior to starting the React Native app, make sure to start up the `message-server` by following the instructions [at this link](https://github.com/nick-ramsay/unified-rum-sandboxes/tree/main/message-server).
 
 1. In the `unified-rum-sandboxes` repository, move to the `ReactNativeMongoTemplate` directory
 2. Run the following command to install the necessary dependencies: `npm install`
@@ -47,7 +47,7 @@ Prior to starting the React Native app, make sure to start up the `message-serve
    1. iOS: `npx expo run:ios`
    2. Android: `npx expo run:android`
 
-This React Native application is coded to initialise Datadog RUM on iOS and Android mobile devices and will refresh the message list every five seconds. Beyond this, if you’ve used the same Mongo database that you used when setting up this [MERN Sandbox](https://github.com/nick-ramsay/unified-rum-sandboxes/main/react-mongo-template), then you will be able to test all three using the same source of data:
+This React Native application is coded to initialise Datadog RUM on iOS and Android mobile devices and will refresh the message list every five seconds. Beyond this, if you’ve used the same Mongo database that you used when setting up this [MERN Sandbox](https://github.com/nick-ramsay/unified-rum-sandboxes/tree/main/react-mongo-template), then you will be able to test all three using the same source of data:
 ![react_native_all_apps_side_by_side](../readme_images/react_native_all_apps_side_by_side.png)
 
 As you can see from the demonstrated activity above, you should now be able to see the activity from the Android and iOS apps under your React Native RUM application:
