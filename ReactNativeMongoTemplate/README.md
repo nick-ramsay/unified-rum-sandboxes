@@ -32,6 +32,8 @@ When you complete these steps, you can run the `npx react-native doctor` command
 
 ## Setting Up and Starting React Native App
 
+Prior to starting the React Native app, make sure to start up the `message-server` by following the instructions [at this link](https://github.com/nick-ramsay/unified-rum-sandboxes/tree/main/message-server)
+
 1. In the `unified-rum-sandboxes` repository, move to the `ReactNativeMongoTemplate` directory
 2. Run the following command to install the necessary dependencies: `npm install`
 3. Create a React Native RUM application in your Datadog org
