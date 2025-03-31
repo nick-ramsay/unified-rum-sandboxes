@@ -48,7 +48,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/darwin"
 
 SPEC CHECKSUMS:
-  datadog_flutter_plugin: ad5d6214eae15c788d6bf9be4f4d132841cd33b8
+  datadog_flutter_plugin: 4584f9867867451e349d2e71b797d0fa647ea000
   DatadogCore: 773e69b0cbb3fbf97176e6fc707206df6dec71d8
   DatadogCrashReporting: 588244d5f61cd614f68a00b7352172aa33bac706
   DatadogInternal: 4259244d5d3dc1acc83d1dc382d6cfdfee48869c
@@ -57,7 +57,7 @@ SPEC CHECKSUMS:
   DictionaryCoder: 5f84fff69f54cb806071538430bdafe04a89d658
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   PLCrashReporter: 97cef386c199b54662e744d1a62c19f7bfe08e90
-  webview_flutter_wkwebview: a4af96a051138e28e29f60101d094683b9f82188
+  webview_flutter_wkwebview: 1821ceac936eba6f7984d89a9f3bcb4dea99ebb2
 
 PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
 

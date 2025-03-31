@@ -1,3 +1,6 @@
+import 'dart:ui';
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +15,12 @@ import 'package:datadog_flutter_plugin/datadog_flutter_plugin.dart';
 import 'package:datadog_tracking_http_client/datadog_tracking_http_client.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+final logConfiguration = DatadogLoggerConfiguration(
+  remoteLogThreshold: LogLevel.debug,
+  networkInfoEnabled: true,
+);
+final logger = DatadogSdk.instance.logs?.createLogger(logConfiguration);
+
 void main() async {
   await dotenv.load(fileName: ".env");
 
@@ -19,6 +28,8 @@ void main() async {
     clientToken: dotenv.env['clientToken'].toString(),
     env: 'staging',
     site: DatadogSite.us1,
+    service: "flutter_mongo_template",
+    version: "1.0.1",
     nativeCrashReportEnabled: true,
     firstPartyHosts: ['localhost', '10.0.2.2'],
     loggingConfiguration: DatadogLoggingConfiguration(),
@@ -202,8 +213,39 @@ class AdditionalRumFunctionality extends StatelessWidget {
             body: Column(children: [
               Center(
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xff632CA6).withOpacity(0.5),
+                    foregroundColor: Colors.white,
+                    elevation: 5,
+                  ),
                   onPressed: () => context.go('/'),
-                  child: const Text('Go back'),
+                  child: const Text('Go Back'),
+                ),
+              ),
+              Center(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xffffbf00).withOpacity(0.5),
+                    foregroundColor: Colors.white,
+                    elevation: 5,
+                  ),
+                  onPressed: () {
+                    logger?.warn("An important warning log...");
+                  },
+                  child: const Text('Generate Warning Log'),
+                ),
+              ),
+              Center(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xffe0115f).withOpacity(0.5),
+                    foregroundColor: Colors.white,
+                    elevation: 5,
+                  ),
+                  onPressed: () {
+                    throw FormatException("You pressed the Throw Error button");
+                  },
+                  child: const Text('Throw Error'),
                 ),
               )
               /*

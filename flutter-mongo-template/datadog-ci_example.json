@@ -1,0 +1,4 @@
+{
+    "apiKey": "<YOUR_DATADOG_API_KEY",
+    "datadogSite": "<YOUR_DATADOG_SITE (datadoghq.com by default)>"
+}
