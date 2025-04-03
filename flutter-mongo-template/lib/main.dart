@@ -29,7 +29,7 @@ void main() async {
     env: 'staging',
     site: DatadogSite.us1,
     service: "flutter_mongo_template",
-    version: "1.0.1",
+    version: "1.0.2",
     nativeCrashReportEnabled: true,
     firstPartyHosts: ['localhost', '10.0.2.2'],
     loggingConfiguration: DatadogLoggingConfiguration(),
