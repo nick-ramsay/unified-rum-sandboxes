@@ -17,6 +17,13 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 const ReactNativeLogo = require("../assets/images/react-native-logo.png");
 const MongoLogo = require("../assets/images/mongoDbLogo.png");
 
+const generateLogs = () => {
+  DdLogs.debug('A debug message.', { customAttribute: 'something' });
+  DdLogs.info('Some relevant information ?', { customCount: 42 });
+  DdLogs.warn('An important warning…', {});
+  DdLogs.error('An error was met!', {});
+};
+
 export default function ExploreScreen() {
   useEffect(() => { DdRum.startView("explore-view", "explore", {}, Date.now()); }, [])
   return (
@@ -31,8 +38,14 @@ export default function ExploreScreen() {
           </View>
           <TouchableOpacity style={styles.navButton}>
             <Link href="/" onPress={() => DdRum.addAction(RumActionType.TAP, 'Go back button', {}, Date.now())}>
-              <Text style={styles.navButtonText}>Go Back</Text>
+              <Text style={styles.blackButtonText}>&#8592; Go Back</Text>
             </Link>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.redButton} onPress={() => { throw new Error("My Error"); }}>
+            <Text style={styles.whiteButtonText}>Throw Error</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.amberButton} onPress={() => { generateLogs(); }}>
+            <Text style={styles.blackButtonText}>Generate RN Logs</Text>
           </TouchableOpacity>
           {/*
           <TouchableOpacity style={styles.navButton}>
@@ -133,19 +146,41 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center'
   },
-  navButton: {
-    marginTop: 5,
-    padding: 8,
-    borderRadius: 6,
-    backgroundColor: "#a50050",
-    alignSelf: "center",
-    width: 200
-  },
-  navButtonText: {
+  whiteButtonText: {
     color: 'white',
     fontWeight: '600',
     fontSize: 16,
     textAlign: 'center'
+  },
+  blackButtonText: {
+    color: 'black',
+    fontWeight: '600',
+    fontSize: 16,
+    textAlign: 'center'
+  },
+  navButton: {
+    marginTop: 5,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: "#00a9d9",
+    alignSelf: "center",
+    width: 200
+  },
+  amberButton: {
+    marginTop: 5,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: "#FFBF00",
+    alignSelf: "center",
+    width: 200
+  },
+  redButton: {
+    marginTop: 5,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: "#950606",
+    alignSelf: "center",
+    width: 200
   },
   stepContainer: {
     gap: 8,
