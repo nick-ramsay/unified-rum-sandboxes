@@ -1,22 +1,22 @@
 PODS:
   - boost (1.84.0)
-  - DatadogCore (2.25.0):
-    - DatadogInternal (= 2.25.0)
-  - DatadogCrashReporting (2.25.0):
-    - DatadogInternal (= 2.25.0)
+  - DatadogCore (2.27.0):
+    - DatadogInternal (= 2.27.0)
+  - DatadogCrashReporting (2.27.0):
+    - DatadogInternal (= 2.27.0)
     - PLCrashReporter (~> 1.12.0)
-  - DatadogInternal (2.25.0)
-  - DatadogLogs (2.25.0):
-    - DatadogInternal (= 2.25.0)
-  - DatadogRUM (2.25.0):
-    - DatadogInternal (= 2.25.0)
-  - DatadogSDKReactNative (2.7.1):
-    - DatadogCore (~> 2.25.0)
-    - DatadogCrashReporting (~> 2.25.0)
-    - DatadogLogs (~> 2.25.0)
-    - DatadogRUM (~> 2.25.0)
-    - DatadogTrace (~> 2.25.0)
-    - DatadogWebViewTracking (~> 2.25.0)
+  - DatadogInternal (2.27.0)
+  - DatadogLogs (2.27.0):
+    - DatadogInternal (= 2.27.0)
+  - DatadogRUM (2.27.0):
+    - DatadogInternal (= 2.27.0)
+  - DatadogSDKReactNative (2.8.0):
+    - DatadogCore (~> 2.27.0)
+    - DatadogCrashReporting (~> 2.27.0)
+    - DatadogLogs (~> 2.27.0)
+    - DatadogRUM (~> 2.27.0)
+    - DatadogTrace (~> 2.27.0)
+    - DatadogWebViewTracking (~> 2.27.0)
     - DoubleConversion
     - glog
     - hermes-engine
@@ -37,9 +37,9 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - DatadogSDKReactNativeSessionReplay (2.7.1):
+  - DatadogSDKReactNativeSessionReplay (2.8.0):
     - DatadogSDKReactNative
-    - DatadogSessionReplay (~> 2.25.0)
+    - DatadogSessionReplay (~> 2.27.0)
     - DoubleConversion
     - glog
     - hermes-engine
@@ -60,13 +60,37 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - DatadogSessionReplay (2.25.0):
-    - DatadogInternal (= 2.25.0)
-  - DatadogTrace (2.25.0):
-    - DatadogInternal (= 2.25.0)
+  - DatadogSDKReactNativeWebView (2.8.0):
+    - DatadogInternal (~> 2.27.0)
+    - DatadogSDKReactNative
+    - DatadogWebViewTracking (~> 2.27.0)
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.10.14.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
+  - DatadogSessionReplay (2.27.0):
+    - DatadogInternal (= 2.27.0)
+  - DatadogTrace (2.27.0):
+    - DatadogInternal (= 2.27.0)
     - OpenTelemetrySwiftApi (= 1.13.1)
-  - DatadogWebViewTracking (2.25.0):
-    - DatadogInternal (= 2.25.0)
+  - DatadogWebViewTracking (2.27.0):
+    - DatadogInternal (= 2.27.0)
   - DoubleConversion (1.1.6)
   - EXConstants (17.0.8):
     - ExpoModulesCore
@@ -1472,7 +1496,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-webview (13.12.5):
+  - react-native-webview (13.13.5):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1925,6 +1949,7 @@ DEPENDENCIES:
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
   - "DatadogSDKReactNative (from `../node_modules/@datadog/mobile-react-native`)"
   - "DatadogSDKReactNativeSessionReplay (from `../node_modules/@datadog/mobile-react-native-session-replay`)"
+  - "DatadogSDKReactNativeWebView (from `../node_modules/@datadog/mobile-react-native-webview`)"
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
   - Expo (from `../node_modules/expo`)
@@ -2032,6 +2057,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@datadog/mobile-react-native"
   DatadogSDKReactNativeSessionReplay:
     :path: "../node_modules/@datadog/mobile-react-native-session-replay"
+  DatadogSDKReactNativeWebView:
+    :path: "../node_modules/@datadog/mobile-react-native-webview"
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   EXConstants:
@@ -2202,16 +2229,17 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost: 1dca942403ed9342f98334bf4c3621f011aa7946
-  DatadogCore: a068d264191f687d00125aafa8042110cf886cd7
-  DatadogCrashReporting: b19d80a98b1eb51bdb3ec5b1a7f339769fb70b95
-  DatadogInternal: e9b6cef84448ee32f73bc9b37646708a65c1b8ae
-  DatadogLogs: 623d89158ef3a4a7545a8fbce9afa4cedc576324
-  DatadogRUM: ff0661b42124d90c9ff2538c3cc1b806ddf7620c
-  DatadogSDKReactNative: 2831940f3742dd4ceb83d1c6d1fc600524464b6d
-  DatadogSDKReactNativeSessionReplay: 48fdeb979434dfcd5b65524e46721975f0f0c546
-  DatadogSessionReplay: 857b566583a7866869d944eb9929dd655fbd8b01
-  DatadogTrace: 4e1aac322eafd8568fd4a966b02e58fbb5af0612
-  DatadogWebViewTracking: 3b2465b5a5bf10f187807e490678a2e0a3c2daae
+  DatadogCore: 68aee4ffcc3ea17a3b0aa527907757883fc72c84
+  DatadogCrashReporting: e6a83b143394e28c9c1cb48c5cfb18eff507b3be
+  DatadogInternal: 3c5cae6772295fd175a9de11e4747a9322aaa4e7
+  DatadogLogs: 09d6358dc7682f9d3eaea85dd418f82d2db3560c
+  DatadogRUM: 0f267df8c9c8579a291870c2bce4549587391a07
+  DatadogSDKReactNative: 2470f716b2cc4e8ae410449b525d7f8519b52634
+  DatadogSDKReactNativeSessionReplay: 1c2f033a565cbe3725705dc08e2c432f4bd11ac3
+  DatadogSDKReactNativeWebView: df14ed480ff4fd85128ff241797a9a675e13bca3
+  DatadogSessionReplay: c23310d576ccfaaca9ecac6afafb0f12e5c480d4
+  DatadogTrace: f46c8220c73463d09741013f385a6e27cd39185b
+  DatadogWebViewTracking: dc8376420c8686efd09d00752bc1034b639d180b
   DoubleConversion: f16ae600a246532c4020132d54af21d0ddb2a385
   EXConstants: fcfc75800824ac2d5c592b5bc74130bad17b146b
   Expo: a6ff273c618506b12129a0d06f2a08201bfbcf43
@@ -2265,7 +2293,7 @@ SPEC CHECKSUMS:
   React-Mapbuffer: 33546a3ebefbccb8770c33a1f8a5554fa96a54de
   React-microtasksnativemodule: d80ff86c8902872d397d9622f1a97aadcc12cead
   react-native-safe-area-context: cd916088cac5300c3266876218377518987b995e
-  react-native-webview: 6b9fc65c1951203a3e958ff3cc0a858d4b6be901
+  react-native-webview: bd489cf45e34be236df3394d3fe33a94319820d6
   React-nativeconfig: 8efdb1ef1e9158c77098a93085438f7e7b463678
   React-NativeModulesApple: cebca2e5320a3d66e123cade23bd90a167ffce5e
   React-perflogger: 72e653eb3aba9122f9e57cf012d22d2486f33358

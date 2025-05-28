@@ -36,26 +36,26 @@ export default function ExploreScreen() {
             <Image style={styles.image} source={ReactNativeLogo} />
             <Image style={styles.mongoImage} source={MongoLogo} />
           </View>
-          <TouchableOpacity style={styles.navButton}>
-            <Link href="/" onPress={() => DdRum.addAction(RumActionType.TAP, 'Go back button', {}, Date.now())}>
-              <Text style={styles.blackButtonText}>&#8592; Go Back</Text>
-            </Link>
-          </TouchableOpacity>
           <TouchableOpacity style={styles.redButton} onPress={() => { throw new Error("My Error"); }}>
             <Text style={styles.whiteButtonText}>Throw Error</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.amberButton} onPress={() => { generateLogs(); }}>
             <Text style={styles.blackButtonText}>Generate RN Logs</Text>
           </TouchableOpacity>
-          {/*
-          <TouchableOpacity style={styles.navButton}>
+          <TouchableOpacity style={styles.tealButton}>
             <Link href="/webview" onPress={() => DdRum.addAction(RumActionType.TAP, 'Webview button', {}, Date.now())}>
-              <Text style={styles.standardButtonText}>React Mongo Template Webview</Text>
+              <Text style={styles.whiteButtonText}>React Mongo Template Webview</Text>
             </Link>
           </TouchableOpacity>
-          */}
         </View>
       </SafeAreaView>
+      <View style={styles.footerButtons}>
+        <TouchableOpacity style={styles.navButton}>
+          <Link href="/" onPress={() => DdRum.addAction(RumActionType.TAP, 'Go back button', {}, Date.now())}>
+            <Text style={styles.navButtonText}>Go Back</Text>
+          </Link>
+        </TouchableOpacity>
+      </View>
     </SafeAreaProvider >
   );
 }
@@ -73,6 +73,11 @@ const styles = StyleSheet.create({
   footer: {
     backgroundColor: "blue",
     padding: 40
+  },
+  footerButtons: {
+    backgroundColor: "black",
+    paddingBottom: 30,
+    paddingTop: 20
   },
   imageRow: {
     margin: 20,
@@ -131,17 +136,16 @@ const styles = StyleSheet.create({
   card: {
     color: "white"
   },
-  standardButton: {
+   navButton: {
     marginTop: 5,
-    paddingTop: 2,
-    paddingBottom: 4,
-    borderRadius: 4,
-    backgroundColor: "#61dafb",
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: "#a50050",
     alignSelf: "center",
-    width: 80
+    width: 200
   },
-  standardButtonText: {
-    color: '#3b3b3b',
+  navButtonText: {
+    color: 'white',
     fontWeight: '600',
     fontSize: 16,
     textAlign: 'center'
@@ -158,11 +162,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center'
   },
-  navButton: {
+  blueButton: {
     marginTop: 5,
     padding: 8,
     borderRadius: 6,
-    backgroundColor: "#00a9d9",
+    backgroundColor: "blue",
     alignSelf: "center",
     width: 200
   },
@@ -179,6 +183,14 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 6,
     backgroundColor: "#950606",
+    alignSelf: "center",
+    width: 200
+  },
+  tealButton: {
+    marginTop: 5,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: "#008080",
     alignSelf: "center",
     width: 200
   },

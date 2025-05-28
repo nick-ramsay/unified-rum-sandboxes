@@ -25,7 +25,7 @@ datadogRum.init({
   trackUserInteractions: true,
   trackResources: true,
   trackLongTasks: true,
-  defaultPrivacyLevel: 'mask',
+  defaultPrivacyLevel: 'allow',
   //allowedTracingUrls: ["http://localhost:3001/", "https://react-mongo-template.herokuapp.com/"],
   allowedTracingUrls: [
     { match: /http:\/\/localhost:3001/, propagatorTypes: ["datadog"] },

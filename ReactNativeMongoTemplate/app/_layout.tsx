@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { useNavigationContainerRef } from "@react-navigation/native";
 import { DatadogProvider, DatadogProviderConfiguration, SdkVerbosity } from "@datadog/mobile-react-native";
 import {
+  ImagePrivacyLevel,
   SessionReplay,
   SessionReplayConfiguration,
   TextAndInputPrivacyLevel,
@@ -51,6 +52,7 @@ export default function RootLayout() {
   const config: SessionReplayConfiguration = {
     replaySampleRate: 100,
     textAndInputPrivacyLevel: TextAndInputPrivacyLevel.MASK_SENSITIVE_INPUTS,
+    imagePrivacyLevel: ImagePrivacyLevel.MASK_NONE
   }
 
   useEffect(() => {
