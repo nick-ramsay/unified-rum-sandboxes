@@ -64,8 +64,8 @@ export default function HomeScreen() {
           </ScrollView>
         </View>
         <TouchableOpacity style={styles.navButton}>
-          <Link href="/explore" onPress={() => DdRum.addAction(RumActionType.TAP, 'Additional Functionality button', {}, Date.now())}>
-            <Text style={styles.navButtonText}>Additional Functionality</Text>
+          <Link style={styles.navButtonText} href="/explore" onPress={() => DdRum.addAction(RumActionType.TAP, 'Additional Functionality button', {}, Date.now())}>
+            <Text>Additional Functionality</Text>
           </Link>
         </TouchableOpacity>
       </SafeAreaView>

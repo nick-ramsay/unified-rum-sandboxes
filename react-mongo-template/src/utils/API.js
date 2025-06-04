@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiURL = 'http://localhost:3001'
+const apiURL = navigator.userAgent.includes("androidWebview") ? 'http://10.0.2.2:3001':'http://localhost:3001';
 
 export default {
     createMessage: function (message, created_date) {

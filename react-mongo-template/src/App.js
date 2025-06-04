@@ -29,6 +29,7 @@ datadogRum.init({
   //allowedTracingUrls: ["http://localhost:3001/", "https://react-mongo-template.herokuapp.com/"],
   allowedTracingUrls: [
     { match: /http:\/\/localhost:3001/, propagatorTypes: ["datadog"] },
+    { match: /http:\/\/10\.0\.2\.2:3001/, propagatorTypes: ["datadog"] },
     { match: /https:\/\/react-mongo-template\.herokuapp\.com/, propagatorTypes: ["datadog"] }
   ],
   // beforeSend: (event, context) => {

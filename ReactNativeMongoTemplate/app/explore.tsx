@@ -43,16 +43,16 @@ export default function ExploreScreen() {
             <Text style={styles.blackButtonText}>Generate RN Logs</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.tealButton}>
-            <Link href="/webview" onPress={() => DdRum.addAction(RumActionType.TAP, 'Webview button', {}, Date.now())}>
-              <Text style={styles.whiteButtonText}>React Mongo Template Webview</Text>
+            <Link style={styles.whiteButtonText} href="/webview" onPress={() => DdRum.addAction(RumActionType.TAP, 'Webview button', {}, Date.now())}>
+              <Text>React Mongo Template Webview</Text>
             </Link>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
       <View style={styles.footerButtons}>
         <TouchableOpacity style={styles.navButton}>
-          <Link href="/" onPress={() => DdRum.addAction(RumActionType.TAP, 'Go back button', {}, Date.now())}>
-            <Text style={styles.navButtonText}>Go Back</Text>
+          <Link style={styles.navButtonText} href="/" onPress={() => DdRum.addAction(RumActionType.TAP, 'Go back button', {}, Date.now())}>
+            <Text>Go Back</Text>
           </Link>
         </TouchableOpacity>
       </View>

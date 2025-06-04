@@ -3,6 +3,7 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useNavigationContainerRef } from "@react-navigation/native";
 import { DatadogProvider, DatadogProviderConfiguration, SdkVerbosity } from "@datadog/mobile-react-native";
+import WebView from '@datadog/mobile-react-native-webview';
 import {
   ImagePrivacyLevel,
   SessionReplay,
