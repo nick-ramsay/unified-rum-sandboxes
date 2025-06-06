@@ -7,7 +7,7 @@ import {
   DdRum,
   RumActionType
 } from '@datadog/mobile-react-native';
-import { WebView } from 'react-native-webview';
+import { WebView } from '@datadog/mobile-react-native-webview';
 import Constants from 'expo-constants';
 import { Link } from 'expo-router';
 import { HelloWave } from '@/components/HelloWave';
@@ -21,15 +21,19 @@ const ReactNativeLogo = require("../assets/images/react-native-logo.png");
 const MongoLogo = require("../assets/images/mongoDbLogo.png");
 
 export default function RMTWebviewScreen() {
+  useEffect(() => { DdRum.startView("webview-view", "webview", {}, Date.now()); }, []);
+  console.log(Platform.OS)
   return (
     <SafeAreaProvider style={styles.webviewContainer}>
       <WebView
         source={{ uri: Platform.OS === "ios" ? 'http://localhost:3000/' : 'http://10.0.2.2:3000' }}
+        allowedHosts={['localhost', 'localhost:3000', '10.0.2.2', '10.0.2.2:3000']}
+        userAgent={Platform.OS + "Webview"}
       />
       <View style={styles.footerButtons}>
         <TouchableOpacity style={styles.navButton}>
-          <Link href="/explore" onPress={() => DdRum.addAction(RumActionType.TAP, 'Go back button', {}, Date.now())}>
-            <Text style={styles.navButtonText}>Go Back</Text>
+          <Link style={styles.navButtonText} href="/explore" onPress={() => DdRum.addAction(RumActionType.TAP, 'Go back button', {}, Date.now())}>
+            <Text>Go Back</Text>
           </Link>
         </TouchableOpacity>
       </View>
@@ -134,12 +138,11 @@ const styles = StyleSheet.create({
   },
   navButton: {
     marginTop: 5,
-    paddingTop: 2,
-    paddingBottom: 4,
-    borderRadius: 4,
-    backgroundColor: "red",
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: "#a50050",
     alignSelf: "center",
-    width: 80
+    width: 200
   },
   navButtonText: {
     color: 'white',
