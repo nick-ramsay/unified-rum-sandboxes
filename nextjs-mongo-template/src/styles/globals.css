@@ -22,5 +22,27 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "IBM Plex Mono", monospace;
+  font-style: normal;
+}
+
+code {
+  color: #006eff;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: underline;
+}
+
+.quotation {
+  font-style: italic;
+}
+
+.button-standard {
+  background-color: #006eff;
+  color: white;
 }

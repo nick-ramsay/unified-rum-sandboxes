@@ -1,11 +1,12 @@
 const tracer = require('dd-trace').init({
     service: "message-server",
-    env: "staging",
+    env: "production",
     ingestion: {
         // Any traces started will be sampled at 1.00% with a rate limit of 100 per second
         sampleRate: 1.0000
     }
 });
+
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
