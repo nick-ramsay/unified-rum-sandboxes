@@ -1,6 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
+# Getting Started
 
 First, run the development server:
 
@@ -14,23 +12,55 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3002](http://localhost:3002) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+Please note, you can run a production build and start the production build with the following:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# nextjs-mongo-template
 
-## Deploy on Vercel
+## Overview
+This directory contains a  web application which interacts with the `messages-server` to create, read, and delete messages from the MongoDB database. Some additional pieces of RUM functionality can also be tested via this application. 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Getting Started
+To get started, refer to the following steps:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Run `npm install` to install all necessary packages.
+2. Create a new `JavaScript (JS)` RUM application in Datadog named `nextjs-mongo-template`. Take note of the `clientToken` and `applicationId` values for this RUM application.
+3. Copy the `.env-example` file to a new file named `.env`. In this file, add your `clientToken` and `applicationId` values. Also add whatever version value you want to use, for example `1.0.0`:
+```
+NEXT_PUBLIC_RUM_APPLICATION_ID=<applicationId from Datadog RUM Application>
+NEXT_PUBLIC_RUM_CLIENT_TOKEN=<clientToken from Datadog RUM Application>
+NEXT_PUBLIC_RUM_VERSION=1.0.0
+```
+4. Prior to starting the `nextjs-mongo-template` application, start up `message-server`. This will be used to handle requests between MongoDB and the front-end.
+5. Now, you can start the `nextjs-mongo-template` application. To start it locally in a `dev` mode, you can simply run `npm run dev`. You should be able see RUM sessions getting generated for your newly created RUM application. To run a fresh build and start the app on a `production` build, run the following command: `npm run build && npm start`. Running a `production` build and generating RUM sessions on the `production` build will allow the source maps you upload in the next step to unminify errors.
+6. If you've run the `production` build, you should see a new `.next/static/chunks` directory in the repository. This new directory contains your source maps. To upload these source maps for unminifying the stack traces, first run `npm install --save-dev @datadog/datadog-ci` to install the Datadog CI tool. Once you've done this, please reference the `dd_source_map_upload_example.txt` file:
+```
+export DATADOG_API_KEY=<YOUR_API_KEY>
+
+datadog-ci sourcemaps upload ./.next/static/chunks/app \
+  --service=nextjs-mongo-template \
+  --release-version=1.0.0 \
+  --minified-path-prefix=http://localhost:3002/_next/static/chunks/app
+```
+
+  - You'll need to replace the `<DATADOG_API_KEY>` with your actual API key
+  - Likewise, you'll need to replace the `<CURRENT_VERSION_VALUE>` with the matching `NEXT_PUBLIC_RUM_VERSION` value for `production` build on which you're current generating RUM sessions.
+  - **Warning:** The `dd_source_map_upload_example.txt` file is not in the `.gitignore` file and changes will be monitored by Git. If you're planning on pushing these changes to a remote repo, such as GitHub, make sure not to push your API key to a public repo where it will get exposed.
+
+Once uploaded, if the `service`, `version`, and `path` values match between the uploaded source maps and the stack traces you're trying to unminify, the unminification should work on your RUM Errors and Browser Logs:
+
+[Link to Access Uploaded Source Maps in Datadog](https://app.datadoghq.com/source-code/setup/rum?search=&filters=%7B%7D&mapkind=js&page=1)
+
+![link_source_code_datadog.png](./readme_images/link_source_code_datadog.png)
+![unminified_error_example.png](./readme_images/unminified_error_example.png)

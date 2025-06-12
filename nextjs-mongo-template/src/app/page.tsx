@@ -12,6 +12,7 @@ import '../styles/globals.css';
 
 let rumApplicationId:string = process.env.NEXT_PUBLIC_RUM_APPLICATION_ID || "";
 let rumClientToken:string = process.env.NEXT_PUBLIC_RUM_CLIENT_TOKEN || "";
+let rumVersion: string = process.env.NEXT_PUBLIC_RUM_VERSION || "";
 
 
 datadogRum.init({
@@ -23,10 +24,11 @@ datadogRum.init({
     service: 'nextjs-mongo-template',
     env: 'production',
     // Specify a version number to identify the deployed version of your application in Datadog
-    version: '1.0.1',
+    version: rumVersion,
     sessionSampleRate: 100,
     sessionReplaySampleRate: 100,
     defaultPrivacyLevel: 'allow',
+    silentMultipleInit: true,
   //allowedTracingUrls: ["http://localhost:3001/", "https://react-mongo-template.herokuapp.com/"],
   allowedTracingUrls: [
     { match: /http:\/\/localhost:3001/, propagatorTypes: ["datadog"] },
@@ -116,8 +118,8 @@ export default function Home() {
           className="bg-gray-900 rounded-md p-2 w-80 outline-none"
         />
       </div>
-      <div className="mt-10">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => { saveMessage(); }}>
+      <div className="mt-5">
+        <button className="bg-blue-700 hover:bg-blue-900 text-white text-sm font-bold py-1 px-3 rounded" onClick={() => { saveMessage(); }}>
           Submit
         </button>
       </div>
@@ -126,7 +128,7 @@ export default function Home() {
           <div className="max-w-sm rounded overflow-hidden shadow-lg card bg-gray-900 m-2 w-screen p-3" key={i}>
             <p className="quotation">"{message.message}"</p>
             <p className="mt-2">{DateTime.fromISO(message.created_date).toLocaleString(DateTime.DATETIME_MED)}</p>
-            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded mt-2" onClick={() => deleteMessage(message._id)}>Delete</button>
+            <button className="bg-red-500 hover:bg-red-700 text-white text-xs font-bold py-1 px-2 rounded mt-2" onClick={() => deleteMessage(message._id)}>Delete</button>
           </div>)
         )}
       </div>

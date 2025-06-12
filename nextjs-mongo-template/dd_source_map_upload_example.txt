@@ -1,6 +1,6 @@
 export DATADOG_API_KEY=<YOUR_API_KEY>
 
-datadog-ci sourcemaps upload ./.next/static/chunks/app \
+datadog-ci sourcemaps upload ./.next/static/chunks \
   --service=nextjs-mongo-template \
-  --release-version=1.0.1 \
-  --minified-path-prefix=http://localhost:3002/_next/static/chunks/app
+  --release-version=1.0.0 \
+  --minified-path-prefix=http://localhost:3002/_next/static/chunks
