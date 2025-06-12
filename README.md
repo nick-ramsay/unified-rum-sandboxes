@@ -4,7 +4,7 @@
 
 The purpose of this repository is to consolidate all prior sandboxes I created into a single repository. All of these sandboxes feature a MongoDB database where messages are created, read, and deleted from the database. In this `unified-rum-sandboxes` repo, all of the frontend applications (React, Flutter, & React Native) will connect to the `message-server` which will connect to the same MongoDB database:
 
-![Unified Sandbox Applications Diagram Image](./readme_images/Unified_Sandbox_Applications_Diagram.jpg)
+![Unified Sandbox Applications Diagram Image](./readme_images/Unified_Sandbox_Applications_Diagram.png)
 
 Each frontend application is monitored with it’s respective RUM SDK and has RUM-Trace correlation enabled. All applications consist of a main view where messages are created, read, and deleted from the shared MongoDB database. There is also an additional page, allowing a second view to get created, where additional RUM functionality is added to test, learn, and demonstrate Datadog RUM:
 
@@ -25,6 +25,12 @@ The message-server is the Express.js server which connects to the MongoDB databa
 The `react-mongo-template` repository is a [MERN application](https://www.mongodb.com/resources/languages/mern-stack) used to generate a React web application. This web application is monitored by the Browser RUM SDK. Documentation outlining how to install and start this application, with Datadog RUM monitoring enabled, can be found here: [Educational - React Browser RUM Sandbox Guide](https://datadoghq.atlassian.net/wiki/spaces/TS/pages/4877484034) .
 
 The folder in the repository where this application resides can be found here: [unified-rum-sandboxes/react-mongo-template at main · nick-ramsay/unified-rum-sandboxes](https://github.com/nick-ramsay/unified-rum-sandboxes/tree/main/react-mongo-template) 
+
+### `nextjs-mongo-template`
+
+The `nextjs-mongo-template` repository is very similar to the `react-mongo-template` and uses the same general structure as a [MERN application](https://www.mongodb.com/resources/languages/mern-stack). The difference between the two repositories is that `nextjs-mongo-template` uses [Next.js](https://nextjs.org/learn?utm_source=next-site&utm_medium=homepage-cta&utm_campaign=home) for the frontend rather than purely using [React](https://react.dev/). This web application is monitored by the Browser RUM SDK.
+
+The folder in the repository where this application resides can be found here: [unified-rum-sandboxes/nextjs-mongo-template at main · nick-ramsay/unified-rum-sandboxes](https://github.com/nick-ramsay/unified-rum-sandboxes/tree/main/nextjs-mongo-template) .
 
 ### `flutter-mongo-template`
 
