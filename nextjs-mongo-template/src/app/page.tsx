@@ -1,41 +1,14 @@
 'use client'
 
 import Image from "next/image";
-import { datadogRum } from '@datadog/browser-rum';
-require('dotenv').config();
+import { datadogLogs } from '@datadog/browser-logs'
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
-import Form from "next/form"; // You can remove this if unused
 import MongoImage from "../images/mongo_logo.png";
 const { DateTime } = require("luxon");
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import '../styles/globals.css';
-
-let rumApplicationId:string = process.env.NEXT_PUBLIC_RUM_APPLICATION_ID || "";
-let rumClientToken:string = process.env.NEXT_PUBLIC_RUM_CLIENT_TOKEN || "";
-let rumVersion: string = process.env.NEXT_PUBLIC_RUM_VERSION || "";
-
-
-datadogRum.init({
-    applicationId: rumApplicationId,
-    clientToken: rumClientToken,
-    // `site` refers to the Datadog site parameter of your organization
-    // see https://docs.datadoghq.com/getting_started/site/
-    site: 'datadoghq.com',
-    service: 'nextjs-mongo-template',
-    env: 'production',
-    // Specify a version number to identify the deployed version of your application in Datadog
-    version: rumVersion,
-    sessionSampleRate: 100,
-    sessionReplaySampleRate: 100,
-    defaultPrivacyLevel: 'allow',
-    silentMultipleInit: true,
-  //allowedTracingUrls: ["http://localhost:3001/", "https://react-mongo-template.herokuapp.com/"],
-  allowedTracingUrls: [
-    { match: /http:\/\/localhost:3001/, propagatorTypes: ["datadog"] },
-    { match: /http:\/\/10\.0\.2\.2:3001/, propagatorTypes: ["datadog"] },
-    { match: /https:\/\/react-mongo-template\.herokuapp\.com/, propagatorTypes: ["datadog"] }
-  ],
-});
 
 export default function Home() {
 
@@ -49,6 +22,7 @@ export default function Home() {
   var [messages, setMessages] = useState<Message[]>([]);
   var [newMessage, setNewMessage] = useState("");
   var [loading, setLoading] = useState(true);
+  var [isOpen, setIsOpen] = useState(false);
 
 
   const renderMessages = () => {
@@ -75,6 +49,25 @@ export default function Home() {
     });
   };
 
+  const generateBrowserLogs = () => {
+    datadogLogs.logger.info(
+      "User clicked 'Generate Browser Log' button - INFO level",
+      { custom_timestamp: new Date() }
+    );
+    datadogLogs.logger.warn(
+      "User clicked 'Generate Browser Log' button - WARN level",
+      { custom_timestamp: new Date() }
+    );
+    datadogLogs.logger.error(
+      "User clicked 'Generate Browser Log' button - ERROR level",
+      { custom_timestamp: new Date() }
+    );
+    datadogLogs.logger.debug(
+      "User clicked 'Generate Browser Log' button - DEBUG level",
+      { custom_timestamp: new Date() }
+    );
+  }
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       renderMessages();
@@ -100,7 +93,7 @@ export default function Home() {
       <div className="mt-10">
         <p>Edit <code>src/app/layout.tsx</code> and save to reload.</p>
       </div>
-      <div className="mt-10">
+      <div className="mt-5">
         <a
           target="_blank"
           href="https://nextjs.org/learn?utm_source=next-site&utm_medium=homepage-cta&utm_campaign=home"
@@ -109,7 +102,7 @@ export default function Home() {
           Learn Next.js
         </a>
       </div>
-      <div className="mt-10">
+      <div className="mt-5">
         <input
           type="text"
           value={newMessage}
@@ -119,18 +112,27 @@ export default function Home() {
         />
       </div>
       <div className="mt-5">
-        <button className="bg-blue-700 hover:bg-blue-900 text-white text-sm font-bold py-1 px-3 rounded" onClick={() => { saveMessage(); }}>
+        <button className="bg-blue-700 hover:bg-blue-900 text-white text-sm py-1 px-3 rounded" onClick={() => { saveMessage(); }}>
           Submit
         </button>
       </div>
-      <div className="mt-10">
+      <div className="mt-5">
         {messages.map((message, i) => (
           <div className="max-w-sm rounded overflow-hidden shadow-lg card bg-gray-900 m-2 w-screen p-3" key={i}>
             <p className="quotation">"{message.message}"</p>
             <p className="mt-2">{DateTime.fromISO(message.created_date).toLocaleString(DateTime.DATETIME_MED)}</p>
-            <button className="bg-red-500 hover:bg-red-700 text-white text-xs font-bold py-1 px-2 rounded mt-2" onClick={() => deleteMessage(message._id)}>Delete</button>
+            <button className="bg-red-500 hover:bg-red-700 text-white text-xs py-1 px-2 rounded mt-2" onClick={() => deleteMessage(message._id)}>Delete</button>
           </div>)
         )}
+      </div>
+      <div className="mt-5 border-t-4 border-gray-900 w-100 ">
+        <div className={isOpen == true ? "mt-5 rounded p-3 rounded-b-none accordion-header text-middle bg-gray-900" : "mt-5 rounded p-3 accordion-header bg-gray-900"} onClick={() => isOpen ? setIsOpen(false) : setIsOpen(true)}>Additional RUM Functionality {isOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />} </div>
+        <div className={isOpen ? "visible rounded-b flex-col bg-gray-900" : "invisible rounded-b bg-gray-900 flex-col"}>
+          <div className="items-center flex-row">
+            <button className="bg-gray-200 hover:bg-gray-400 text-black text-xs py-1 px-2 rounded m-2" onClick={() => { window.location.href = "./alternate" }}>Alternate Page</button>
+            <button className="bg-yellow-400 hover:bg-yellow-600 text-black text-xs py-1 px-2 rounded m-2" onClick={() => { generateBrowserLogs(); }}>Generate Logs</button>
+          </div>
+        </div>
       </div>
     </div>
   );

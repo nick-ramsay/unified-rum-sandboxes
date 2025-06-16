@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import DatadogInit from "@/components/datadog-init";
 import { Lato } from "next/font/google";
 import "../styles/globals.css";
 
@@ -20,10 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      
       <body
         className={lato.className}
       >
+        <DatadogInit />
         {children}
       </body>
     </html>
