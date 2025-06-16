@@ -46,3 +46,7 @@ a {
   background-color: #006eff;
   color: white;
 }
+
+.accordion-header:hover {
+  cursor: pointer;
+}
