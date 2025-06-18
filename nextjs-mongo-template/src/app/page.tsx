@@ -1,6 +1,7 @@
 'use client'
 
 import Image from "next/image";
+import { PuffLoader } from "react-spinners";
 import { datadogLogs } from '@datadog/browser-logs'
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
@@ -102,35 +103,40 @@ export default function Home() {
           Learn Next.js
         </a>
       </div>
-      <div className="mt-5">
-        <input
-          type="text"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          placeholder="Enter your message here"
-          className="bg-gray-900 rounded-md p-2 w-80 outline-none"
-        />
+      <div className="mt-15" style={{display: !loading ? 'none':'block'}}>
+        <PuffLoader color="#0068f1" size={100} />
       </div>
-      <div className="mt-5">
-        <button className="bg-blue-700 hover:bg-blue-900 text-white text-sm py-1 px-3 rounded" onClick={() => { saveMessage(); }}>
-          Submit
-        </button>
-      </div>
-      <div className="mt-5">
-        {messages.map((message, i) => (
-          <div className="max-w-sm rounded overflow-hidden shadow-lg card bg-gray-900 m-2 w-screen p-3" key={i}>
-            <p className="quotation">"{message.message}"</p>
-            <p className="mt-2">{DateTime.fromISO(message.created_date).toLocaleString(DateTime.DATETIME_MED)}</p>
-            <button className="bg-red-500 hover:bg-red-700 text-white text-xs py-1 px-2 rounded mt-2" onClick={() => deleteMessage(message._id)}>Delete</button>
-          </div>)
-        )}
-      </div>
-      <div className="mt-5 border-t-4 border-gray-900 w-100 ">
-        <div className={isOpen == true ? "mt-5 rounded p-3 rounded-b-none accordion-header text-middle bg-gray-900" : "mt-5 rounded p-3 accordion-header bg-gray-900"} onClick={() => isOpen ? setIsOpen(false) : setIsOpen(true)}>Additional RUM Functionality {isOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />} </div>
-        <div className={isOpen ? "visible rounded-b flex-col bg-gray-900" : "invisible rounded-b bg-gray-900 flex-col"}>
-          <div className="items-center flex-row">
-            <button className="bg-gray-200 hover:bg-gray-400 text-black text-xs py-1 px-2 rounded m-2" onClick={() => { window.location.href = "./alternate" }}>Alternate Page</button>
-            <button className="bg-yellow-400 hover:bg-yellow-600 text-black text-xs py-1 px-2 rounded m-2" onClick={() => { generateBrowserLogs(); }}>Generate Logs</button>
+      <div className={loading ? "invisible" : "visible"}>
+        <div className="mt-5">
+          <input
+            type="text"
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            placeholder="Enter your message here"
+            className="bg-gray-900 rounded-md p-2 w-100 outline-none"
+          />
+        </div>
+        <div className="mt-5">
+          <button className="bg-blue-700 hover:bg-blue-900 text-white text-sm py-1 px-3 rounded" onClick={() => { saveMessage(); }}>
+            Submit
+          </button>
+        </div>
+        <div className="mt-5">
+          {messages.map((message, i) => (
+            <div className="max-w-sm rounded overflow-hidden shadow-lg card bg-gray-900 m-2 w-screen p-3" key={i}>
+              <p className="quotation">"{message.message}"</p>
+              <p className="mt-2">{DateTime.fromISO(message.created_date).toLocaleString(DateTime.DATETIME_MED)}</p>
+              <button className="bg-red-500 hover:bg-red-700 text-white text-xs py-1 px-2 rounded mt-2" onClick={() => deleteMessage(message._id)}>Delete</button>
+            </div>)
+          )}
+        </div>
+        <div className="mt-5 border-t-4 border-gray-900 w-100 ">
+          <div className={isOpen == true ? "mt-5 rounded p-3 rounded-b-none accordion-header text-middle bg-gray-900" : "mt-5 rounded p-3 accordion-header bg-gray-900"} onClick={() => isOpen ? setIsOpen(false) : setIsOpen(true)}>Additional RUM Functionality {isOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />} </div>
+          <div className={isOpen ? "visible rounded-b flex-col bg-gray-900" : "invisible rounded-b bg-gray-900 flex-col"}>
+            <div className="items-center flex-row">
+              <button className="bg-gray-200 hover:bg-gray-400 text-black text-xs py-1 px-2 rounded m-2" onClick={() => { window.location.href = "./alternate" }}>Alternate Page</button>
+              <button className="bg-yellow-400 hover:bg-yellow-600 text-black text-xs py-1 px-2 rounded m-2" onClick={() => { generateBrowserLogs(); }}>Generate Logs</button>
+            </div>
           </div>
         </div>
       </div>

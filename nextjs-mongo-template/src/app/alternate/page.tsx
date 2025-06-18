@@ -1,20 +1,11 @@
 'use client'
 
 import Image from "next/image";
-import { datadogRum } from '@datadog/browser-rum';
-require('dotenv').config();
 import React, { useEffect } from "react";
-import Form from "next/form"; // You can remove this if unused
-import MongoImage from "../images/mongo_logo.png";
-
-import '../styles/globals.css';
+import MongoImage from "../../images/mongo_logo.png";
+import '../../styles/globals.css';
 
 export default function Alternate() {
-  useEffect(() => {
-    // Optional: only if you're using trackViewsManually: true
-      datadogRum.startView(window.location.pathname);
-  }, []);
-
   return (
     <div className="flex flex-col items-center justify-center p-10 text-center">
       <div className="mb-10">

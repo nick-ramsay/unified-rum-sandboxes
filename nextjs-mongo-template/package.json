@@ -16,11 +16,13 @@
     "@mui/icons-material": "^7.1.1",
     "@mui/material": "^7.1.1",
     "axios": "^1.9.0",
+    "datadog-rum": "^1.0.0",
     "dotenv": "^16.5.0",
     "luxon": "^3.6.1",
     "next": "15.3.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-spinners": "^0.17.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
